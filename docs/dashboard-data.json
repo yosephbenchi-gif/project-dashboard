@@ -58,7 +58,12 @@
       "next_steps": [],
       "blockers": [],
       "risks": [],
-      "important_links": [],
+      "important_links": [
+        {
+          "label": "Billing Master File (Phase 1)",
+          "url": "https://docs.google.com/spreadsheets/d/1msYkgWJFIxo7B_HI2O2kU3GKqTdifhX4yvftjoMI-G0/edit?usp=sharing"
+        }
+      ],
       "recent_updates": [
         {
           "timestamp": "2026-06-18T11:00:00Z",
@@ -152,7 +157,12 @@
       "next_steps": [],
       "blockers": [],
       "risks": [],
-      "important_links": [],
+      "important_links": [
+        {
+          "label": "Margin Calculator (Confluence)",
+          "url": "https://mediaconnect.atlassian.net/wiki/spaces/OP/pages/5342101511/Margin+Calculator"
+        }
+      ],
       "recent_updates": [
         {
           "timestamp": "2026-06-18T11:00:00Z",
@@ -190,7 +200,12 @@
         }
       ],
       "risks": [],
-      "important_links": [],
+      "important_links": [
+        {
+          "label": "Naming Conventions Sheet",
+          "url": "https://docs.google.com/spreadsheets/d/1Z5Im6IOJ8gNuVrhcMazQlH6RPCXdbM4AFotIOONxzbw/edit?usp=sharing"
+        }
+      ],
       "recent_updates": [
         {
           "timestamp": "2026-06-18T11:00:00Z",
@@ -228,7 +243,12 @@
         }
       ],
       "risks": [],
-      "important_links": [],
+      "important_links": [
+        {
+          "label": "Planhat RFP Dashboard",
+          "url": "https://ws.planhat.com/ask-locala/home/content-explorer?pId=6a29b49d4c4714484949e808"
+        }
+      ],
       "recent_updates": [
         {
           "timestamp": "2026-06-18T11:00:00Z",
