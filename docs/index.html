@@ -3,324 +3,385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Status Dashboard</title>
+<meta name="color-scheme" content="light">
+<title>Locala — Project Status Dashboard</title>
 <style>
-  :root {
-    --bg: #f9f9f7;
-    --surface: #ffffff;
-    --surface2: #f3f2ef;
-    --border: #e4e3de;
-    --text: #1a1a18;
-    --text2: #6b6a65;
-    --text3: #9b9a95;
-    --blue: #185FA5;
-    --blue-bg: #E6F1FB;
-    --green: #3B6D11;
-    --green-bg: #EAF3DE;
-    --red: #A32D2D;
-    --red-bg: #FCEBEB;
-    --amber: #854F0B;
-    --amber-bg: #FAEEDA;
-    --radius: 10px;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1a1a18;
-      --surface: #242421;
-      --surface2: #2e2e2b;
-      --border: #3a3a36;
-      --text: #f0efe8;
-      --text2: #9b9a95;
-      --text3: #6b6a65;
-      --blue: #85B7EB;
-      --blue-bg: #042C53;
-      --green: #97C459;
-      --green-bg: #173404;
-      --red: #F09595;
-      --red-bg: #501313;
-      --amber: #FAC775;
-      --amber-bg: #412402;
-    }
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.5; }
-  .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
-  .page-header { margin-bottom: 2rem; }
-  .page-title { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
-  .page-meta { font-size: 13px; color: var(--text2); }
-  .page-meta a { color: var(--blue); text-decoration: none; }
-  .summary-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 2rem; }
-  .stat { background: var(--surface2); border-radius: var(--radius); padding: 0.9rem 1rem; text-align: center; }
-  .stat-num { font-size: 28px; font-weight: 600; line-height: 1; }
-  .stat-lbl { font-size: 11px; color: var(--text2); margin-top: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
-  .s-total { color: var(--text); }
-  .s-inprog { color: var(--blue); }
-  .s-done { color: var(--green); }
-  .s-blocked { color: var(--red); }
-  .s-over { color: var(--amber); }
-  .mgr-summary { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; margin-bottom: 2rem; font-size: 14px; line-height: 1.7; }
-  .mgr-summary strong { font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); display: block; margin-bottom: 6px; }
-  .section-head { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); margin-bottom: 0.75rem; margin-top: 2rem; }
-  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem; }
-  .filter-btn { font-size: 12px; padding: 5px 13px; border-radius: 20px; border: 1px solid var(--border); background: transparent; cursor: pointer; color: var(--text2); font-family: inherit; }
-  .filter-btn.active { background: var(--blue-bg); color: var(--blue); border-color: var(--blue); }
-  .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; margin-bottom: 10px; }
-  .project-card.is-blocked { border-left: 3px solid var(--red); }
-  .project-card.is-overdue { border-left: 3px solid var(--amber); }
-  .proj-row1 { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
-  .proj-name { font-size: 15px; font-weight: 600; }
-  .proj-sub { font-size: 12px; color: var(--text2); margin-top: 3px; }
-  .proj-sub .overdue-tag { color: var(--red); }
-  .badges { display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0; align-items: center; }
-  .badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
-  .b-inprog { background: var(--blue-bg); color: var(--blue); }
-  .b-done { background: var(--green-bg); color: var(--green); }
-  .b-blocked { background: var(--red-bg); color: var(--red); }
-  .b-waiting { background: var(--amber-bg); color: var(--amber); }
-  .b-notstarted { background: var(--surface2); color: var(--text2); }
-  .b-high { background: var(--red-bg); color: var(--red); }
-  .b-med { background: var(--amber-bg); color: var(--amber); }
-  .b-low { background: var(--green-bg); color: var(--green); }
-  .prog-wrap { background: var(--surface2); border-radius: 4px; height: 5px; margin-bottom: 10px; overflow: hidden; }
-  .prog-bar { height: 5px; border-radius: 4px; }
-  .pg-inprog { background: #378ADD; }
-  .pg-done { background: #63C22F; }
-  .pg-blocked { background: #E24B4A; }
-  .pg-waiting { background: #EF9F27; }
-  .pg-notstarted { background: #B4B2A9; }
-  .proj-meta { font-size: 12px; color: var(--text2); margin-bottom: 10px; }
-  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin-bottom: 10px; }
-  .proj-field { font-size: 13px; }
-  .pf-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text3); margin-bottom: 2px; }
-  .pf-val { color: var(--text); line-height: 1.45; }
-  .pf-blocker { color: var(--red); }
-  .links-row { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 8px; }
-  .link-pill { font-size: 12px; color: var(--blue); background: var(--blue-bg); border-radius: 20px; padding: 3px 10px; text-decoration: none; }
-  .link-pill:hover { opacity: 0.8; }
-  .update-foot { font-size: 12px; color: var(--text2); border-top: 1px solid var(--border); padding-top: 8px; font-style: italic; }
-  .alert-section { background: var(--red-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; }
-  .alert-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--red); margin-bottom: 8px; }
-  .alert-item { font-size: 13px; margin-bottom: 4px; }
-  .alert-item strong { font-weight: 600; }
-  .weekly-btn { font-size: 13px; padding: 7px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; color: var(--text); font-family: inherit; }
-  .weekly-btn:hover { background: var(--surface2); }
-  .error-msg { text-align: center; padding: 3rem 1rem; color: var(--text2); }
-  .error-msg code { background: var(--surface2); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
-  @media (max-width: 600px) { .proj-grid { grid-template-columns: 1fr; } .summary-bar { grid-template-columns: repeat(3, 1fr); } }
+html, body {
+  color-scheme: light !important;
+  background: #E8F3F5 !important;
+  color: #001D5C !important;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #E8F3F5 !important;
+  color: #001D5C !important;
+  font-size: 15px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  background: #001D5C;
+  border-bottom: 4px solid #E54B2B;
+}
+.header-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 1.4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.header-left { display: flex; flex-direction: column; }
+.header-title { color: #ffffff; font-size: 20px; font-weight: 700; letter-spacing: -0.2px; }
+.header-title span { color: #E54B2B; }
+.header-sub { color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 3px; }
+.weekly-btn {
+  font-size: 12px;
+  padding: 7px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.08);
+  cursor: pointer;
+  color: #ffffff;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.weekly-btn:hover { background: rgba(255,255,255,0.15); }
+
+/* CONTAINER */
+.container { max-width: 1040px; margin: 0 auto; padding: 2rem; }
+
+/* STAT CARDS */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+.stat {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid #D8E4E5;
+}
+.stat-num { font-size: 32px; font-weight: 700; line-height: 1; }
+.stat-lbl { font-size: 11px; color: #7A8A9E; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
+.s-total  { color: #001D5C; }
+.s-inprog { color: #003DA1; }
+.s-done   { color: #1A6B2C; }
+.s-wait   { color: #B45309; }
+.s-ns     { color: #9AAABB; }
+
+/* THIS WEEK BOX */
+.mgr-box {
+  background: #ffffff;
+  border-radius: 10px;
+  border-left: 4px solid #E54B2B;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border-top: 1px solid #D8E4E5;
+  border-right: 1px solid #D8E4E5;
+  border-bottom: 1px solid #D8E4E5;
+}
+.mgr-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #E54B2B; margin-bottom: 5px; }
+.mgr-text { font-size: 14px; color: #001D5C; line-height: 1.7; }
+
+/* ALERTS */
+.alert-box {
+  background: #FEF2EF;
+  border: 1px solid #FBBFAE;
+  border-left: 4px solid #E54B2B;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.alert-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #E54B2B; margin-bottom: 8px; }
+.alert-item { font-size: 13px; color: #7A2010; margin-bottom: 3px; }
+
+/* SECTION HEADER */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+.section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #7A8A9E; }
+.filters { display: flex; gap: 6px; }
+.filter-btn {
+  font-size: 12px;
+  padding: 4px 13px;
+  border-radius: 20px;
+  border: 1px solid #D8E4E5;
+  background: #ffffff;
+  cursor: pointer;
+  color: #7A8A9E;
+  font-family: inherit;
+}
+.filter-btn.active { background: #001D5C; color: #ffffff; border-color: #001D5C; }
+.filter-btn:hover:not(.active) { background: #E8F3F5; }
+
+/* PROJECT CARD */
+.project-card {
+  background: #ffffff;
+  border: 1px solid #D8E4E5;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 10px;
+}
+.project-card.is-waiting { border-left: 4px solid #F59E0B; }
+.project-card.is-blocked { border-left: 4px solid #E54B2B; }
+.project-card.is-done { border-left: 4px solid #1A6B2C; }
+
+.proj-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.proj-name { font-size: 15px; font-weight: 700; color: #001D5C; }
+.proj-meta { font-size: 12px; color: #7A8A9E; margin-top: 2px; }
+
+.badges { display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0; align-items: center; }
+.badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+.b-inprog   { background: #EEF2FF; color: #003DA1; }
+.b-done     { background: #E8F5EC; color: #1A6B2C; }
+.b-blocked  { background: #FEF2EF; color: #C0392B; }
+.b-waiting  { background: #FEF3C7; color: #B45309; }
+.b-notstarted { background: #F0F4F8; color: #7A8A9E; }
+.b-high   { background: #FEF2EF; color: #E54B2B; }
+.b-med    { background: #FEF3C7; color: #B45309; }
+.b-low    { background: #F0F4F8; color: #7A8A9E; }
+
+.prog-wrap { background: #E8F3F5; border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden; }
+.prog-bar  { height: 6px; border-radius: 4px; }
+.pg-inprog    { background: #001D5C; }
+.pg-done      { background: #1A6B2C; }
+.pg-blocked   { background: #E54B2B; }
+.pg-waiting   { background: #F59E0B; }
+.pg-notstarted{ background: #D8E4E5; }
+
+.proj-pct { font-size: 12px; color: #7A8A9E; margin-bottom: 12px; }
+
+.proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; margin-bottom: 12px; }
+.pf-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9AAABB; margin-bottom: 3px; }
+.pf-val   { font-size: 13px; color: #001D5C; line-height: 1.45; }
+.pf-wait  { font-size: 13px; color: #B45309; }
+.pf-block { font-size: 13px; color: #C0392B; }
+.pf-none  { font-size: 13px; color: #9AAABB; }
+
+.links-row { display: flex; gap: 7px; flex-wrap: wrap; padding-top: 10px; border-top: 1px solid #E8F3F5; margin-bottom: 10px; }
+.link-pill {
+  font-size: 12px;
+  color: #001D5C;
+  background: #E8F3F5;
+  border-radius: 6px;
+  padding: 4px 11px;
+  text-decoration: none;
+  font-weight: 500;
+  border: 1px solid #C8DDE0;
+}
+.link-pill:hover { background: #D4ECED; text-decoration: underline; }
+
+.update-foot { font-size: 12px; color: #7A8A9E; border-top: 1px solid #E8F3F5; padding-top: 8px; font-style: italic; }
+
+/* DEADLINES */
+.deadlines-box { background: #ffffff; border: 1px solid #D8E4E5; border-radius: 10px; padding: 1rem 1.25rem; }
+.deadline-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #E8F3F5; font-size: 13px; color: #001D5C; }
+.deadline-row:last-child { border-bottom: none; }
+
+.footer { text-align: center; padding: 2.5rem 1rem; font-size: 12px; color: #7A8A9E; }
+.footer strong { color: #001D5C; }
+
+.error-msg { text-align: center; padding: 3rem; color: #7A8A9E; background: #ffffff; border-radius: 10px; border: 1px solid #D8E4E5; }
+
+@media (max-width: 640px) {
+  .summary-grid { grid-template-columns: repeat(3, 1fr); }
+  .proj-grid { grid-template-columns: 1fr; }
+  .header-inner { flex-direction: column; align-items: flex-start; }
+}
 </style>
 </head>
 <body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="header-title">locala <span>·</span> Project Status Dashboard</div>
+      <div class="header-sub" id="page-meta">Loading...</div>
+    </div>
+    <button class="weekly-btn" onclick="generateWeeklySummary()">✉ Weekly summary</button>
+  </div>
+</div>
+
 <div class="container">
 
-  <div class="page-header">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">
-      <div>
-        <div class="page-title">Project status dashboard</div>
-        <div class="page-meta" id="page-meta">Loading...</div>
-      </div>
-      <div id="weekly-wrap"></div>
-    </div>
-  </div>
-
-  <div class="summary-bar" id="summary-bar"></div>
-
+  <div class="summary-grid" id="summary-grid"></div>
   <div id="alerts"></div>
 
-  <div class="mgr-summary" id="mgr-summary">
-    <strong>This week</strong>
-    <span id="mgr-text">Loading project data...</span>
+  <div class="mgr-box">
+    <div class="mgr-label">This week</div>
+    <div class="mgr-text" id="mgr-text">Loading...</div>
   </div>
 
-  <div class="section-head">All projects</div>
-  <div class="filters" id="filters">
-    <button class="filter-btn active" onclick="filter('all',this)">All</button>
-    <button class="filter-btn" onclick="filter('blocked',this)">Blocked</button>
-    <button class="filter-btn" onclick="filter('inprog',this)">In progress</button>
-    <button class="filter-btn" onclick="filter('completed',this)">Completed</button>
+  <div class="section-head">
+    <div class="section-title">All projects</div>
+    <div class="filters">
+      <button class="filter-btn active" onclick="filter('all',this)">All</button>
+      <button class="filter-btn" onclick="filter('waiting',this)">Waiting</button>
+      <button class="filter-btn" onclick="filter('inprog',this)">In progress</button>
+      <button class="filter-btn" onclick="filter('done',this)">Completed</button>
+      <button class="filter-btn" onclick="filter('notstarted',this)">Not started</button>
+    </div>
   </div>
 
   <div id="cards"></div>
 
-  <div class="section-head" style="margin-top:2.5rem">Upcoming deadlines</div>
-  <div id="deadlines"></div>
+  <div class="section-title" style="margin-top:1.75rem;margin-bottom:0.75rem">Upcoming deadlines</div>
+  <div class="deadlines-box" id="deadlines"></div>
 
+  <div class="footer"><strong>Locala</strong> · Operations Dashboard · Yoseph Benchimol · Account Coordinator Intern</div>
 </div>
+
 <script>
-const STATUS_CLASS = {
-  'In Progress': 'inprog', 'Completed': 'done', 'Blocked': 'blocked',
-  'Waiting': 'waiting', 'Not Started': 'notstarted'
-};
-const STATUS_BADGE = {
-  'In Progress': 'b-inprog', 'Completed': 'b-done', 'Blocked': 'b-blocked',
-  'Waiting': 'b-waiting', 'Not Started': 'b-notstarted'
-};
-const PRIORITY_BADGE = { 'High': 'b-high', 'Medium': 'b-med', 'Low': 'b-low' };
-const PROG_CLASS = {
-  'In Progress': 'pg-inprog', 'Completed': 'pg-done', 'Blocked': 'pg-blocked',
-  'Waiting': 'pg-waiting', 'Not Started': 'pg-notstarted'
-};
+const STATUS_KEY   = {'In Progress':'inprog','Completed':'done','Blocked':'blocked','Waiting':'waiting','Not Started':'notstarted'};
+const STATUS_BADGE = {'In Progress':'b-inprog','Completed':'b-done','Blocked':'b-blocked','Waiting':'b-waiting','Not Started':'b-notstarted'};
+const PRIO_BADGE   = {'High':'b-high','Medium':'b-med','Low':'b-low'};
+const PROG_CLASS   = {'In Progress':'pg-inprog','Completed':'pg-done','Blocked':'pg-blocked','Waiting':'pg-waiting','Not Started':'pg-notstarted'};
 
 let allProjects = [];
 
-function fmt(ts) {
-  if (!ts || ts === 'Unknown') return 'Unknown';
-  try { return new Date(ts).toLocaleString('en-US', {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
-  catch(e) { return ts; }
-}
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function fmt(ts){ if(!ts||ts==='Unknown') return 'Unknown'; try{ return new Date(ts).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}); }catch(e){ return ts; } }
 
-function escHtml(s) {
-  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+function renderCard(p){
+  const sk = STATUS_KEY[p.status]||'notstarted';
+  const sb = STATUS_BADGE[p.status]||'b-notstarted';
+  const pb = PRIO_BADGE[p.priority]||'b-med';
+  const pc = PROG_CLASS[p.status]||'pg-notstarted';
+  const pct = Math.min(100,Math.max(0,p.progress_percent||0));
+  const isWaiting = p.blockers&&p.blockers.length&&p.blockers[0].type==='Waiting';
+  const cardClass = p.status==='Blocked'?'is-blocked': isWaiting?'is-waiting': p.status==='Completed'?'is-done':'';
 
-function renderCard(p) {
-  const sc = STATUS_CLASS[p.status] || 'notstarted';
-  const sb = STATUS_BADGE[p.status] || 'b-notstarted';
-  const pb = PRIORITY_BADGE[p.priority] || 'b-med';
-  const pc = PROG_CLASS[p.status] || 'pg-notstarted';
-  const pct = Math.min(100, Math.max(0, p.progress_percent || 0));
-  const blockerClass = p.status === 'Blocked' ? 'is-blocked' : (p.is_overdue ? 'is-overdue' : '');
+  const blockerHtml = p.blockers&&p.blockers.length
+    ? p.blockers.map(b=>`<div class="${b.type==='Waiting'?'pf-wait':'pf-block'}">⚠ ${esc(b.description)}</div>`).join('')
+    : `<div class="pf-none">None</div>`;
 
-  const blockerHtml = p.blockers && p.blockers.length
-    ? p.blockers.map(b => `<div class="pf-blocker">⚠ ${escHtml(b.description)}${b.action_needed ? ' — ' + escHtml(b.action_needed) : ''}</div>`).join('')
-    : `<div style="color:var(--text3)">None</div>`;
+  const linksHtml = p.important_links&&p.important_links.length
+    ? `<div class="links-row">${p.important_links.map(l=>`<a class="link-pill" href="${esc(l.url)}" target="_blank" rel="noopener">🔗 ${esc(l.label)}</a>`).join('')}</div>`
+    : '';
 
-  const linksHtml = (p.important_links || []).map(l =>
-    `<a class="link-pill" href="${escHtml(l.url)}" target="_blank" rel="noopener">${escHtml(l.label)}</a>`
-  ).join('');
-
-  const lastUpdate = (p.recent_updates || []).slice(-1)[0];
-  const updateNote = lastUpdate ? escHtml(lastUpdate.summary) : '';
-
-  const overdueTag = p.is_overdue ? `<span class="overdue-tag"> (overdue)</span>` : '';
+  const lastUpdate = (p.recent_updates||[]).slice(-1)[0];
 
   return `
-  <div class="project-card ${blockerClass}" data-status="${sc}">
-    <div class="proj-row1">
+  <div class="project-card ${cardClass}" data-status="${sk}">
+    <div class="proj-top">
       <div>
-        <div class="proj-name">${escHtml(p.project_name)}</div>
-        <div class="proj-sub">Owner: ${escHtml(p.owner)} &nbsp;·&nbsp; Due: ${escHtml(p.due_date || 'TBD')}${overdueTag}</div>
+        <div class="proj-name">${esc(p.project_name)}</div>
+        <div class="proj-meta">Owner: ${esc(p.owner)}${p.due_date?' &nbsp;·&nbsp; Due: '+esc(p.due_date):''}</div>
       </div>
       <div class="badges">
-        <span class="badge ${sb}">${escHtml(p.status)}</span>
-        <span class="badge ${pb}">${escHtml(p.priority)}</span>
+        <span class="badge ${sb}">${esc(p.status)}</span>
+        <span class="badge ${pb}">${esc(p.priority)}</span>
       </div>
     </div>
     <div class="prog-wrap"><div class="prog-bar ${pc}" style="width:${pct}%"></div></div>
-    <div class="proj-meta">${pct}% complete &nbsp;·&nbsp; Updated ${fmt(p.last_updated)}</div>
+    <div class="proj-pct">${pct}% complete &nbsp;·&nbsp; Updated ${fmt(p.last_updated)}</div>
     <div class="proj-grid">
-      <div class="proj-field"><div class="pf-label">Current focus</div><div class="pf-val">${escHtml(p.current_focus)}</div></div>
-      <div class="proj-field"><div class="pf-label">Completed</div><div class="pf-val">${escHtml((p.completed_work||[]).slice(-2).join('; ') || '—')}</div></div>
-      <div class="proj-field"><div class="pf-label">Next steps</div><div class="pf-val">${escHtml((p.next_steps||[]).slice(0,2).join('; ') || '—')}</div></div>
-      <div class="proj-field"><div class="pf-label">Blockers</div><div>${blockerHtml}</div></div>
+      <div><div class="pf-label">Current focus</div><div class="pf-val">${esc(p.current_focus)}</div></div>
+      <div><div class="pf-label">Completed</div><div class="pf-val">${esc((p.completed_work||[]).slice(-2).join('; ')||'—')}</div></div>
+      <div><div class="pf-label">Next steps</div><div class="pf-val">${esc((p.next_steps||[]).slice(0,2).join('; ')||'—')}</div></div>
+      <div><div class="pf-label">Blockers / waiting</div>${blockerHtml}</div>
     </div>
-    ${linksHtml ? `<div class="links-row">${linksHtml}</div>` : ''}
-    ${updateNote ? `<div class="update-foot">${updateNote}</div>` : ''}
+    ${linksHtml}
+    ${lastUpdate?`<div class="update-foot">${esc(lastUpdate.summary)}</div>`:''}
   </div>`;
 }
 
-function filter(status, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+function filter(status, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('.project-card').forEach(c => {
-    c.style.display = (status === 'all' || c.dataset.status === status) ? '' : 'none';
+  document.querySelectorAll('.project-card').forEach(c=>{
+    c.style.display=(status==='all'||c.dataset.status===status)?'':'none';
   });
 }
 
-function renderDeadlines(deadlines) {
-  const el = document.getElementById('deadlines');
-  if (!deadlines || deadlines.length === 0) {
-    el.innerHTML = '<div style="font-size:13px;color:var(--text2)">No deadlines in the next 14 days.</div>';
-    return;
-  }
-  el.innerHTML = deadlines.map(d => `
-    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px">
-      <span style="font-weight:600;min-width:90px">${escHtml(d.due_date)}</span>
-      <span style="flex:1">${escHtml(d.project)}</span>
-      <span style="color:var(--text2)">${d.days_left === 0 ? 'Today' : d.days_left + 'd left'}</span>
-    </div>`).join('');
+function buildSummaryText(summary, projects){
+  const parts=[];
+  if(summary.in_progress>0){ const ip=projects.filter(p=>p.status==='In Progress'); parts.push(`${summary.in_progress} project${summary.in_progress>1?'s':''} in progress: ${ip.map(p=>p.project_name).join(', ')}.`); }
+  if(summary.completed>0){ const d=projects.filter(p=>p.status==='Completed'); parts.push(`${summary.completed} completed: ${d.map(p=>p.project_name).join(', ')}.`); }
+  if(summary.blocked>0){ const b=projects.filter(p=>p.status==='Blocked'); parts.push(`<strong style="color:#E54B2B">${summary.blocked} blocked:</strong> ${b.map(p=>p.project_name).join(', ')}.`); }
+  const w=projects.filter(p=>p.blockers&&p.blockers.length&&p.blockers[0].type==='Waiting');
+  if(w.length>0) parts.push(`${w.length} waiting on external input: ${w.map(p=>p.project_name).join(', ')}.`);
+  return parts.join(' ')||'No active projects.';
 }
 
-function buildManagerSummary(summary, projects) {
-  const parts = [];
-  if (summary.in_progress > 0) {
-    const ip = projects.filter(p => p.status === 'In Progress');
-    parts.push(`${summary.in_progress} project${summary.in_progress > 1 ? 's' : ''} in progress: ${ip.map(p=>p.project_name).join(', ')}.`);
-  }
-  if (summary.completed > 0) {
-    const done = projects.filter(p => p.status === 'Completed');
-    parts.push(`${summary.completed} completed: ${done.map(p=>p.project_name).join(', ')}.`);
-  }
-  if (summary.blocked > 0) {
-    const blk = projects.filter(p => p.status === 'Blocked');
-    parts.push(`<strong style="color:var(--red)">${summary.blocked} blocked — requires attention:</strong> ${blk.map(p=>p.project_name).join(', ')}.`);
-  }
-  if (summary.overdue > 0) parts.push(`<strong style="color:var(--amber)">${summary.overdue} overdue.</strong>`);
-  return parts.join(' ');
-}
+async function load(){
+  try{
+    const resp=await fetch('dashboard-data.json');
+    if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const data=await resp.json();
+    const {summary,projects,generated_at,owner}=data;
+    allProjects=projects;
 
-async function load() {
-  try {
-    const resp = await fetch('dashboard-data.json');
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const data = await resp.json();
-    const { summary, projects, generated_at, owner } = data;
-    allProjects = projects;
+    document.getElementById('page-meta').textContent=`Last refreshed: ${fmt(generated_at)} · ${owner}`;
 
-    document.getElementById('page-meta').innerHTML =
-      `Last refreshed: ${fmt(generated_at)} &nbsp;·&nbsp; Owner: ${escHtml(owner)}`;
-
-    document.getElementById('summary-bar').innerHTML = `
+    const ns=(summary.by_status||{})['Not Started']||0;
+    document.getElementById('summary-grid').innerHTML=`
       <div class="stat"><div class="stat-num s-total">${summary.total}</div><div class="stat-lbl">Total</div></div>
       <div class="stat"><div class="stat-num s-inprog">${summary.in_progress}</div><div class="stat-lbl">In progress</div></div>
       <div class="stat"><div class="stat-num s-done">${summary.completed}</div><div class="stat-lbl">Completed</div></div>
-      <div class="stat"><div class="stat-num s-blocked">${summary.blocked}</div><div class="stat-lbl">Blocked</div></div>
-      <div class="stat"><div class="stat-num s-over">${summary.overdue}</div><div class="stat-lbl">Overdue</div></div>`;
+      <div class="stat"><div class="stat-num s-wait">${summary.blocked+((summary.by_status||{})['Waiting']||0)}</div><div class="stat-lbl">Waiting</div></div>
+      <div class="stat"><div class="stat-num s-ns">${ns}</div><div class="stat-lbl">Not started</div></div>`;
 
-    document.getElementById('weekly-wrap').innerHTML =
-      `<button class="weekly-btn" onclick="generateWeeklySummary()">✉ Weekly summary</button>`;
-
-    if (summary.all_blockers.length > 0) {
-      document.getElementById('alerts').innerHTML = `
-        <div class="alert-section">
-          <div class="alert-title">⚠ Action required — blockers</div>
-          ${summary.all_blockers.map(b => `
-            <div class="alert-item"><strong>${escHtml(b.project)}:</strong> ${escHtml(b.description)} — ${escHtml(b.action_needed||'See project for details')}</div>
-          `).join('')}
+    if(summary.all_blockers&&summary.all_blockers.length>0){
+      document.getElementById('alerts').innerHTML=`
+        <div class="alert-box">
+          <div class="alert-label">⚠ Waiting on action</div>
+          ${summary.all_blockers.map(b=>`<div class="alert-item"><strong>${esc(b.project)}:</strong> ${esc(b.description)}${b.action_needed?' — '+esc(b.action_needed):''}</div>`).join('')}
         </div>`;
     }
 
-    document.getElementById('mgr-text').innerHTML = buildManagerSummary(summary, projects);
+    document.getElementById('mgr-text').innerHTML=buildSummaryText(summary,projects);
 
-    const sorted = [...projects].sort((a, b) => {
-      const order = { Blocked: 0, 'In Progress': 1, Waiting: 2, 'Not Started': 3, Completed: 4 };
-      return (order[a.status] ?? 5) - (order[b.status] ?? 5);
+    const sorted=[...projects].sort((a,b)=>{
+      const o={'Blocked':0,'Waiting':1,'In Progress':2,'Not Started':3,'Completed':4};
+      return (o[a.status]??5)-(o[b.status]??5);
     });
-    document.getElementById('cards').innerHTML = sorted.map(renderCard).join('');
+    document.getElementById('cards').innerHTML=sorted.map(renderCard).join('');
 
-    renderDeadlines(summary.upcoming_deadlines);
-
-  } catch(e) {
-    document.getElementById('cards').innerHTML = `
-      <div class="error-msg">
-        <p><strong>Could not load dashboard data.</strong></p>
-        <p>Make sure <code>dashboard-data.json</code> is in the same folder as this HTML file.</p>
-        <p>Run <code>python scripts/sync.py</code> to generate it.</p>
-        <p style="margin-top:1rem;font-size:12px;color:var(--text3)">${escHtml(String(e))}</p>
-      </div>`;
+    const dl=document.getElementById('deadlines');
+    if(!summary.upcoming_deadlines||summary.upcoming_deadlines.length===0){
+      dl.innerHTML='<div style="font-size:13px;color:#7A8A9E">No deadlines in the next 14 days.</div>';
+    } else {
+      dl.innerHTML=summary.upcoming_deadlines.map(d=>`
+        <div class="deadline-row">
+          <span style="font-weight:700;min-width:90px">${esc(d.due_date)}</span>
+          <span style="flex:1">${esc(d.project)}</span>
+          <span style="color:#7A8A9E">${d.days_left===0?'Today':d.days_left+'d left'}</span>
+        </div>`).join('');
+    }
+  } catch(e){
+    document.getElementById('cards').innerHTML=`<div class="error-msg"><strong>Could not load dashboard data.</strong><br><br><small>${esc(String(e))}</small></div>`;
   }
 }
 
-function generateWeeklySummary() {
-  const lines = ['Generate a professional weekly status summary for my manager based on these project statuses:\n'];
-  allProjects.forEach(p => {
+function generateWeeklySummary(){
+  const lines=['Generate a professional weekly status summary email for my manager based on these projects:\n'];
+  allProjects.forEach(p=>{
     lines.push(`Project: ${p.project_name}`);
     lines.push(`Status: ${p.status} (${p.progress_percent}%)`);
     lines.push(`Summary: ${p.summary_for_manager}`);
-    if (p.blockers && p.blockers.length) lines.push(`Blockers: ${p.blockers.map(b=>b.description).join('; ')}`);
+    if(p.blockers&&p.blockers.length) lines.push(`Waiting on: ${p.blockers.map(b=>b.description).join('; ')}`);
     lines.push('');
   });
-  lines.push('Format it as: completed this week, in progress, blockers needing manager attention, priorities for next week, deadlines coming up.');
-  navigator.clipboard.writeText(lines.join('\n')).then(() => alert('Prompt copied to clipboard! Paste it into Claude.'));
+  lines.push('Format: completed this week, in progress, items waiting on others, priorities for next week.');
+  navigator.clipboard.writeText(lines.join('\n')).then(()=>alert('Prompt copied! Paste it into Claude.'));
 }
 
 load();
