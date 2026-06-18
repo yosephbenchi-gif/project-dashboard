@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T11:10:00Z",
+  "generated_at": "2026-06-18T11:30:00Z",
   "owner": "Yoseph Benchimol",
   "summary": {
     "total": 7,
@@ -12,7 +12,22 @@
     "blocked": 0,
     "in_progress": 3,
     "completed": 2,
-    "all_blockers": [],
+    "all_blockers": [
+      {
+        "project": "Naming Conventions Standardization",
+        "type": "Waiting",
+        "description": "Waiting on parameters list from Gabby",
+        "action_needed": "Follow up with Gabby on parameters list",
+        "since": "2026-06-18"
+      },
+      {
+        "project": "Planhat RFP Tracking",
+        "type": "Waiting",
+        "description": "Need Amale to adjust Planhat data before analysis can begin",
+        "action_needed": "Follow up with Amale",
+        "since": "2026-06-18"
+      }
+    ],
     "upcoming_deadlines": []
   },
   "projects": [
@@ -48,14 +63,17 @@
       "project_name": "Billing Optimization — Phase 2",
       "project_id": "proj-002",
       "owner": "Yoseph Benchimol",
-      "status": "Not Started",
+      "status": "In Progress",
       "priority": "High",
-      "progress_percent": 0,
-      "last_updated": "2026-06-18T11:00:00Z",
+      "progress_percent": 10,
+      "last_updated": "2026-06-18T11:30:00Z",
       "due_date": null,
       "is_overdue": false,
-      "current_focus": "Planned — not yet started",
-      "completed_work": [],
+      "current_focus": "Building automated script to detect campaigns with expired end dates",
+      "completed_work": [
+        "Project scope and requirements defined",
+        "Started development"
+      ],
       "next_steps": [
         "Build automated script to detect campaigns with expired end dates",
         "Set up Jira/Confluence alerts to traders",
@@ -66,23 +84,23 @@
       "important_links": [],
       "recent_updates": [
         {
-          "timestamp": "2026-06-18T11:00:00Z",
-          "summary": "Planned. Will build after Phase 1 is fully stable."
+          "timestamp": "2026-06-18T11:30:00Z",
+          "summary": "Phase 2 started. Working on campaign closure monitoring script."
         }
       ],
-      "summary_for_manager": "Phase 2 is planned but not yet started. The goal is to build an automated script that detects campaigns with expired end dates and sends alerts to traders via Jira/Confluence, preventing campaigns from being forgotten at month-end."
+      "summary_for_manager": "Phase 2 of the Billing Optimization project has just started (10% complete). The goal is to build an automated script that detects campaigns with expired end dates and sends alerts to traders via Jira/Confluence, preventing campaigns from being forgotten at month-end."
     },
     {
       "project_name": "Billing Optimization — Phase 3",
       "project_id": "proj-003",
       "owner": "Yoseph Benchimol",
       "status": "Not Started",
-      "priority": "Medium",
+      "priority": "High",
       "progress_percent": 0,
       "last_updated": "2026-06-18T11:00:00Z",
       "due_date": null,
       "is_overdue": false,
-      "current_focus": "Planned — not yet started",
+      "current_focus": "Planned — will start after Phase 2",
       "completed_work": [],
       "next_steps": [
         "Design Salesforce vs IO comparison logic",
@@ -95,7 +113,7 @@
       "recent_updates": [
         {
           "timestamp": "2026-06-18T11:00:00Z",
-          "summary": "Planned. Will start after Phase 2."
+          "summary": "Planned. Will start after Phase 2 is complete."
         }
       ],
       "summary_for_manager": "Phase 3 is planned but not yet started. The goal is a script that compares Salesforce data against the IO and flags discrepancies in budgets, dates, and metrics before they reach billing."
@@ -123,7 +141,7 @@
       "recent_updates": [
         {
           "timestamp": "2026-06-18T11:00:00Z",
-          "summary": "Margin calculator optimization complete. Performance and accuracy improvements delivered."
+          "summary": "Margin calculator optimization complete."
         }
       ],
       "summary_for_manager": "The Margin Calculator optimization is complete. The existing codebase was reviewed and improved for performance and accuracy across omnichannel calculations."
@@ -161,10 +179,10 @@
       "recent_updates": [
         {
           "timestamp": "2026-06-18T11:00:00Z",
-          "summary": "Framework defined. Blocked on parameters list from Gabby before next steps can proceed."
+          "summary": "Framework defined. Waiting on parameters list from Gabby before next steps."
         }
       ],
-      "summary_for_manager": "The Naming Conventions standardization project is 40% complete. The goal is to eliminate manual data entry errors by standardizing naming across all reporting systems. Currently waiting on a parameters list from Gabby to move forward."
+      "summary_for_manager": "The Naming Conventions standardization project is 40% complete. Currently waiting on a parameters list from Gabby to move forward."
     },
     {
       "project_name": "Planhat RFP Tracking",
@@ -199,25 +217,23 @@
       "recent_updates": [
         {
           "timestamp": "2026-06-18T11:00:00Z",
-          "summary": "Scope defined. Waiting on Amale to adjust Planhat data. Weekly tracking to start in July."
+          "summary": "Scope defined. Waiting on Amale to adjust Planhat data."
         }
       ],
-      "summary_for_manager": "The Planhat RFP Tracking project is 25% complete. The goal is to track RFPs won vs lost from January to present, calculate the H1 ratio, and implement weekly tracking from July onward. Currently waiting on Amale to adjust the Planhat data."
+      "summary_for_manager": "The Planhat RFP Tracking project is 25% complete. Currently waiting on Amale to adjust the Planhat data before analysis can begin."
     },
     {
       "project_name": "Share Folder Audit",
       "project_id": "proj-007",
       "owner": "Yoseph Benchimol",
-      "status": "In Progress",
+      "status": "Not Started",
       "priority": "Low",
-      "progress_percent": 5,
+      "progress_percent": 0,
       "last_updated": "2026-06-18T11:00:00Z",
       "due_date": null,
       "is_overdue": false,
-      "current_focus": "Initial audit of AMs share folder structure",
-      "completed_work": [
-        "Audit scope defined"
-      ],
+      "current_focus": "Not started yet",
+      "completed_work": [],
       "next_steps": [
         "Audit all AMs share folders (campaigns by month)",
         "Verify IOs, SS, and documentation are complete",
@@ -229,10 +245,10 @@
       "recent_updates": [
         {
           "timestamp": "2026-06-18T11:00:00Z",
-          "summary": "Just started. Audit scope defined, work in progress."
+          "summary": "Not started yet."
         }
       ],
-      "summary_for_manager": "The Share Folder Audit is just getting started (5% complete). The goal is to audit and organize all AMs' share folders by campaign and month, and verify that all IOs, screenshots, and documentation are complete for audit readiness."
+      "summary_for_manager": "The Share Folder Audit has not started yet. The goal is to audit and organize all AMs share folders by campaign and month, verifying that all IOs, screenshots, and documentation are complete for audit readiness."
     }
   ]
 }
