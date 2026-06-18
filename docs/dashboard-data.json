@@ -5,14 +5,22 @@
     "total": 7,
     "by_status": {
       "Completed": 2,
-      "In Progress": 3,
-      "Not Started": 2
+      "In Progress": 2,
+      "Not Started": 2,
+      "Waiting": 1
     },
     "overdue": 0,
     "blocked": 0,
-    "in_progress": 3,
+    "in_progress": 2,
     "completed": 2,
     "all_blockers": [
+      {
+        "project": "Billing Optimization \u2014 Phase 2",
+        "type": "Waiting",
+        "description": "Waiting on meeting with Michael Weintraub for access, permissions, and project approval",
+        "action_needed": "Schedule meeting with Michael Weintraub",
+        "since": "2026-06-18"
+      },
       {
         "project": "Naming Conventions Standardization",
         "type": "Waiting",
@@ -32,7 +40,7 @@
   },
   "projects": [
     {
-      "project_name": "Billing Optimization — Phase 1",
+      "project_name": "Billing Optimization \u2014 Phase 1",
       "project_id": "proj-001",
       "owner": "Yoseph Benchimol",
       "status": "Completed",
@@ -41,7 +49,7 @@
       "last_updated": "2026-06-18T11:00:00Z",
       "due_date": null,
       "is_overdue": false,
-      "current_focus": "Completed — live in production",
+      "current_focus": "Completed \u2014 live in production",
       "completed_work": [
         "Automated system pulling billing data from all 9 AMs into one Master tab",
         "Real-time validation and error detection with red flagging",
@@ -60,10 +68,10 @@
       "summary_for_manager": "Phase 1 of the Billing Optimization project is complete. An automated system now pulls billing data from all 9 Account Managers into one Master tab with real-time validation, error detection, and regional analytics. This is live and in use."
     },
     {
-      "project_name": "Billing Optimization — Phase 2",
+      "project_name": "Billing Optimization \u2014 Phase 2",
       "project_id": "proj-002",
       "owner": "Yoseph Benchimol",
-      "status": "In Progress",
+      "status": "Waiting",
       "priority": "High",
       "progress_percent": 10,
       "last_updated": "2026-06-18T11:30:00Z",
@@ -79,19 +87,26 @@
         "Set up Jira/Confluence alerts to traders",
         "Test with sample expired campaigns"
       ],
-      "blockers": [],
+      "blockers": [
+        {
+          "type": "Waiting",
+          "description": "Waiting on meeting with Michael Weintraub for access, permissions, and project approval",
+          "action_needed": "Schedule meeting with Michael Weintraub",
+          "since": "2026-06-18"
+        }
+      ],
       "risks": [],
       "important_links": [],
       "recent_updates": [
         {
           "timestamp": "2026-06-18T11:30:00Z",
-          "summary": "Phase 2 started. Working on campaign closure monitoring script."
+          "summary": "Phase 2 started. Blocked on meeting with Michael Weintraub for access, permissions, and approval before proceeding."
         }
       ],
-      "summary_for_manager": "Phase 2 of the Billing Optimization project has just started (10% complete). The goal is to build an automated script that detects campaigns with expired end dates and sends alerts to traders via Jira/Confluence, preventing campaigns from being forgotten at month-end."
+      "summary_for_manager": "Phase 2 of the Billing Optimization project has just started (10% complete). Currently waiting on a meeting with Michael Weintraub to get the necessary access, permissions, and project approval before the script can be built and deployed."
     },
     {
-      "project_name": "Billing Optimization — Phase 3",
+      "project_name": "Billing Optimization \u2014 Phase 3",
       "project_id": "proj-003",
       "owner": "Yoseph Benchimol",
       "status": "Not Started",
@@ -100,7 +115,7 @@
       "last_updated": "2026-06-18T11:00:00Z",
       "due_date": null,
       "is_overdue": false,
-      "current_focus": "Planned — will start after Phase 2",
+      "current_focus": "Planned \u2014 will start after Phase 2",
       "completed_work": [],
       "next_steps": [
         "Design Salesforce vs IO comparison logic",
