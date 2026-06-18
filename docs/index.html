@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Status Dashboard</title>
+<style>
+  :root {
+    --bg: #f9f9f7;
+    --surface: #ffffff;
+    --surface2: #f3f2ef;
+    --border: #e4e3de;
+    --text: #1a1a18;
+    --text2: #6b6a65;
+    --text3: #9b9a95;
+    --blue: #185FA5;
+    --blue-bg: #E6F1FB;
+    --green: #3B6D11;
+    --green-bg: #EAF3DE;
+    --red: #A32D2D;
+    --red-bg: #FCEBEB;
+    --amber: #854F0B;
+    --amber-bg: #FAEEDA;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a18;
+      --surface: #242421;
+      --surface2: #2e2e2b;
+      --border: #3a3a36;
+      --text: #f0efe8;
+      --text2: #9b9a95;
+      --text3: #6b6a65;
+      --blue: #85B7EB;
+      --blue-bg: #042C53;
+      --green: #97C459;
+      --green-bg: #173404;
+      --red: #F09595;
+      --red-bg: #501313;
+      --amber: #FAC775;
+      --amber-bg: #412402;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.5; }
+  .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .page-header { margin-bottom: 2rem; }
+  .page-title { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .page-meta { font-size: 13px; color: var(--text2); }
+  .page-meta a { color: var(--blue); text-decoration: none; }
+  .summary-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+  .stat { background: var(--surface2); border-radius: var(--radius); padding: 0.9rem 1rem; text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 600; line-height: 1; }
+  .stat-lbl { font-size: 11px; color: var(--text2); margin-top: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .s-total { color: var(--text); }
+  .s-inprog { color: var(--blue); }
+  .s-done { color: var(--green); }
+  .s-blocked { color: var(--red); }
+  .s-over { color: var(--amber); }
+  .mgr-summary { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; margin-bottom: 2rem; font-size: 14px; line-height: 1.7; }
+  .mgr-summary strong { font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); display: block; margin-bottom: 6px; }
+  .section-head { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); margin-bottom: 0.75rem; margin-top: 2rem; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem; }
+  .filter-btn { font-size: 12px; padding: 5px 13px; border-radius: 20px; border: 1px solid var(--border); background: transparent; cursor: pointer; color: var(--text2); font-family: inherit; }
+  .filter-btn.active { background: var(--blue-bg); color: var(--blue); border-color: var(--blue); }
+  .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; margin-bottom: 10px; }
+  .project-card.is-blocked { border-left: 3px solid var(--red); }
+  .project-card.is-overdue { border-left: 3px solid var(--amber); }
+  .proj-row1 { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+  .proj-name { font-size: 15px; font-weight: 600; }
+  .proj-sub { font-size: 12px; color: var(--text2); margin-top: 3px; }
+  .proj-sub .overdue-tag { color: var(--red); }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0; align-items: center; }
+  .badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+  .b-inprog { background: var(--blue-bg); color: var(--blue); }
+  .b-done { background: var(--green-bg); color: var(--green); }
+  .b-blocked { background: var(--red-bg); color: var(--red); }
+  .b-waiting { background: var(--amber-bg); color: var(--amber); }
+  .b-notstarted { background: var(--surface2); color: var(--text2); }
+  .b-high { background: var(--red-bg); color: var(--red); }
+  .b-med { background: var(--amber-bg); color: var(--amber); }
+  .b-low { background: var(--green-bg); color: var(--green); }
+  .prog-wrap { background: var(--surface2); border-radius: 4px; height: 5px; margin-bottom: 10px; overflow: hidden; }
+  .prog-bar { height: 5px; border-radius: 4px; }
+  .pg-inprog { background: #378ADD; }
+  .pg-done { background: #63C22F; }
+  .pg-blocked { background: #E24B4A; }
+  .pg-waiting { background: #EF9F27; }
+  .pg-notstarted { background: #B4B2A9; }
+  .proj-meta { font-size: 12px; color: var(--text2); margin-bottom: 10px; }
+  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin-bottom: 10px; }
+  .proj-field { font-size: 13px; }
+  .pf-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text3); margin-bottom: 2px; }
+  .pf-val { color: var(--text); line-height: 1.45; }
+  .pf-blocker { color: var(--red); }
+  .links-row { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 8px; }
+  .link-pill { font-size: 12px; color: var(--blue); background: var(--blue-bg); border-radius: 20px; padding: 3px 10px; text-decoration: none; }
+  .link-pill:hover { opacity: 0.8; }
+  .update-foot { font-size: 12px; color: var(--text2); border-top: 1px solid var(--border); padding-top: 8px; font-style: italic; }
+  .alert-section { background: var(--red-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+  .alert-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--red); margin-bottom: 8px; }
+  .alert-item { font-size: 13px; margin-bottom: 4px; }
+  .alert-item strong { font-weight: 600; }
+  .weekly-btn { font-size: 13px; padding: 7px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; color: var(--text); font-family: inherit; }
+  .weekly-btn:hover { background: var(--surface2); }
+  .error-msg { text-align: center; padding: 3rem 1rem; color: var(--text2); }
+  .error-msg code { background: var(--surface2); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  @media (max-width: 600px) { .proj-grid { grid-template-columns: 1fr; } .summary-bar { grid-template-columns: repeat(3, 1fr); } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="page-header">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">
+      <div>
+        <div class="page-title">Project status dashboard</div>
+        <div class="page-meta" id="page-meta">Loading...</div>
+      </div>
+      <div id="weekly-wrap"></div>
+    </div>
+  </div>
+
+  <div class="summary-bar" id="summary-bar"></div>
+
+  <div id="alerts"></div>
+
+  <div class="mgr-summary" id="mgr-summary">
+    <strong>This week</strong>
+    <span id="mgr-text">Loading project data...</span>
+  </div>
+
+  <div class="section-head">All projects</div>
+  <div class="filters" id="filters">
+    <button class="filter-btn active" onclick="filter('all',this)">All</button>
+    <button class="filter-btn" onclick="filter('blocked',this)">Blocked</button>
+    <button class="filter-btn" onclick="filter('inprog',this)">In progress</button>
+    <button class="filter-btn" onclick="filter('completed',this)">Completed</button>
+  </div>
+
+  <div id="cards"></div>
+
+  <div class="section-head" style="margin-top:2.5rem">Upcoming deadlines</div>
+  <div id="deadlines"></div>
+
+</div>
+<script>
+const STATUS_CLASS = {
+  'In Progress': 'inprog', 'Completed': 'done', 'Blocked': 'blocked',
+  'Waiting': 'waiting', 'Not Started': 'notstarted'
+};
+const STATUS_BADGE = {
+  'In Progress': 'b-inprog', 'Completed': 'b-done', 'Blocked': 'b-blocked',
+  'Waiting': 'b-waiting', 'Not Started': 'b-notstarted'
+};
+const PRIORITY_BADGE = { 'High': 'b-high', 'Medium': 'b-med', 'Low': 'b-low' };
+const PROG_CLASS = {
+  'In Progress': 'pg-inprog', 'Completed': 'pg-done', 'Blocked': 'pg-blocked',
+  'Waiting': 'pg-waiting', 'Not Started': 'pg-notstarted'
+};
+
+let allProjects = [];
+
+function fmt(ts) {
+  if (!ts || ts === 'Unknown') return 'Unknown';
+  try { return new Date(ts).toLocaleString('en-US', {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}); }
+  catch(e) { return ts; }
+}
+
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderCard(p) {
+  const sc = STATUS_CLASS[p.status] || 'notstarted';
+  const sb = STATUS_BADGE[p.status] || 'b-notstarted';
+  const pb = PRIORITY_BADGE[p.priority] || 'b-med';
+  const pc = PROG_CLASS[p.status] || 'pg-notstarted';
+  const pct = Math.min(100, Math.max(0, p.progress_percent || 0));
+  const blockerClass = p.status === 'Blocked' ? 'is-blocked' : (p.is_overdue ? 'is-overdue' : '');
+
+  const blockerHtml = p.blockers && p.blockers.length
+    ? p.blockers.map(b => `<div class="pf-blocker">⚠ ${escHtml(b.description)}${b.action_needed ? ' — ' + escHtml(b.action_needed) : ''}</div>`).join('')
+    : `<div style="color:var(--text3)">None</div>`;
+
+  const linksHtml = (p.important_links || []).map(l =>
+    `<a class="link-pill" href="${escHtml(l.url)}" target="_blank" rel="noopener">${escHtml(l.label)}</a>`
+  ).join('');
+
+  const lastUpdate = (p.recent_updates || []).slice(-1)[0];
+  const updateNote = lastUpdate ? escHtml(lastUpdate.summary) : '';
+
+  const overdueTag = p.is_overdue ? `<span class="overdue-tag"> (overdue)</span>` : '';
+
+  return `
+  <div class="project-card ${blockerClass}" data-status="${sc}">
+    <div class="proj-row1">
+      <div>
+        <div class="proj-name">${escHtml(p.project_name)}</div>
+        <div class="proj-sub">Owner: ${escHtml(p.owner)} &nbsp;·&nbsp; Due: ${escHtml(p.due_date || 'TBD')}${overdueTag}</div>
+      </div>
+      <div class="badges">
+        <span class="badge ${sb}">${escHtml(p.status)}</span>
+        <span class="badge ${pb}">${escHtml(p.priority)}</span>
+      </div>
+    </div>
+    <div class="prog-wrap"><div class="prog-bar ${pc}" style="width:${pct}%"></div></div>
+    <div class="proj-meta">${pct}% complete &nbsp;·&nbsp; Updated ${fmt(p.last_updated)}</div>
+    <div class="proj-grid">
+      <div class="proj-field"><div class="pf-label">Current focus</div><div class="pf-val">${escHtml(p.current_focus)}</div></div>
+      <div class="proj-field"><div class="pf-label">Completed</div><div class="pf-val">${escHtml((p.completed_work||[]).slice(-2).join('; ') || '—')}</div></div>
+      <div class="proj-field"><div class="pf-label">Next steps</div><div class="pf-val">${escHtml((p.next_steps||[]).slice(0,2).join('; ') || '—')}</div></div>
+      <div class="proj-field"><div class="pf-label">Blockers</div><div>${blockerHtml}</div></div>
+    </div>
+    ${linksHtml ? `<div class="links-row">${linksHtml}</div>` : ''}
+    ${updateNote ? `<div class="update-foot">${updateNote}</div>` : ''}
+  </div>`;
+}
+
+function filter(status, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(c => {
+    c.style.display = (status === 'all' || c.dataset.status === status) ? '' : 'none';
+  });
+}
+
+function renderDeadlines(deadlines) {
+  const el = document.getElementById('deadlines');
+  if (!deadlines || deadlines.length === 0) {
+    el.innerHTML = '<div style="font-size:13px;color:var(--text2)">No deadlines in the next 14 days.</div>';
+    return;
+  }
+  el.innerHTML = deadlines.map(d => `
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px">
+      <span style="font-weight:600;min-width:90px">${escHtml(d.due_date)}</span>
+      <span style="flex:1">${escHtml(d.project)}</span>
+      <span style="color:var(--text2)">${d.days_left === 0 ? 'Today' : d.days_left + 'd left'}</span>
+    </div>`).join('');
+}
+
+function buildManagerSummary(summary, projects) {
+  const parts = [];
+  if (summary.in_progress > 0) {
+    const ip = projects.filter(p => p.status === 'In Progress');
+    parts.push(`${summary.in_progress} project${summary.in_progress > 1 ? 's' : ''} in progress: ${ip.map(p=>p.project_name).join(', ')}.`);
+  }
+  if (summary.completed > 0) {
+    const done = projects.filter(p => p.status === 'Completed');
+    parts.push(`${summary.completed} completed: ${done.map(p=>p.project_name).join(', ')}.`);
+  }
+  if (summary.blocked > 0) {
+    const blk = projects.filter(p => p.status === 'Blocked');
+    parts.push(`<strong style="color:var(--red)">${summary.blocked} blocked — requires attention:</strong> ${blk.map(p=>p.project_name).join(', ')}.`);
+  }
+  if (summary.overdue > 0) parts.push(`<strong style="color:var(--amber)">${summary.overdue} overdue.</strong>`);
+  return parts.join(' ');
+}
+
+async function load() {
+  try {
+    const resp = await fetch('dashboard-data.json');
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const data = await resp.json();
+    const { summary, projects, generated_at, owner } = data;
+    allProjects = projects;
+
+    document.getElementById('page-meta').innerHTML =
+      `Last refreshed: ${fmt(generated_at)} &nbsp;·&nbsp; Owner: ${escHtml(owner)}`;
+
+    document.getElementById('summary-bar').innerHTML = `
+      <div class="stat"><div class="stat-num s-total">${summary.total}</div><div class="stat-lbl">Total</div></div>
+      <div class="stat"><div class="stat-num s-inprog">${summary.in_progress}</div><div class="stat-lbl">In progress</div></div>
+      <div class="stat"><div class="stat-num s-done">${summary.completed}</div><div class="stat-lbl">Completed</div></div>
+      <div class="stat"><div class="stat-num s-blocked">${summary.blocked}</div><div class="stat-lbl">Blocked</div></div>
+      <div class="stat"><div class="stat-num s-over">${summary.overdue}</div><div class="stat-lbl">Overdue</div></div>`;
+
+    document.getElementById('weekly-wrap').innerHTML =
+      `<button class="weekly-btn" onclick="generateWeeklySummary()">✉ Weekly summary</button>`;
+
+    if (summary.all_blockers.length > 0) {
+      document.getElementById('alerts').innerHTML = `
+        <div class="alert-section">
+          <div class="alert-title">⚠ Action required — blockers</div>
+          ${summary.all_blockers.map(b => `
+            <div class="alert-item"><strong>${escHtml(b.project)}:</strong> ${escHtml(b.description)} — ${escHtml(b.action_needed||'See project for details')}</div>
+          `).join('')}
+        </div>`;
+    }
+
+    document.getElementById('mgr-text').innerHTML = buildManagerSummary(summary, projects);
+
+    const sorted = [...projects].sort((a, b) => {
+      const order = { Blocked: 0, 'In Progress': 1, Waiting: 2, 'Not Started': 3, Completed: 4 };
+      return (order[a.status] ?? 5) - (order[b.status] ?? 5);
+    });
+    document.getElementById('cards').innerHTML = sorted.map(renderCard).join('');
+
+    renderDeadlines(summary.upcoming_deadlines);
+
+  } catch(e) {
+    document.getElementById('cards').innerHTML = `
+      <div class="error-msg">
+        <p><strong>Could not load dashboard data.</strong></p>
+        <p>Make sure <code>dashboard-data.json</code> is in the same folder as this HTML file.</p>
+        <p>Run <code>python scripts/sync.py</code> to generate it.</p>
+        <p style="margin-top:1rem;font-size:12px;color:var(--text3)">${escHtml(String(e))}</p>
+      </div>`;
+  }
+}
+
+function generateWeeklySummary() {
+  const lines = ['Generate a professional weekly status summary for my manager based on these project statuses:\n'];
+  allProjects.forEach(p => {
+    lines.push(`Project: ${p.project_name}`);
+    lines.push(`Status: ${p.status} (${p.progress_percent}%)`);
+    lines.push(`Summary: ${p.summary_for_manager}`);
+    if (p.blockers && p.blockers.length) lines.push(`Blockers: ${p.blockers.map(b=>b.description).join('; ')}`);
+    lines.push('');
+  });
+  lines.push('Format it as: completed this week, in progress, blockers needing manager attention, priorities for next week, deadlines coming up.');
+  navigator.clipboard.writeText(lines.join('\n')).then(() => alert('Prompt copied to clipboard! Paste it into Claude.'));
+}
+
+load();
+</script>
+</body>
+</html>

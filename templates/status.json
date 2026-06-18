@@ -1,0 +1,50 @@
+{
+  "project_name": "Project Name Here",
+  "project_id": "proj-001",
+  "owner": "Your Name",
+  "status": "In Progress",
+  "priority": "High",
+  "progress_percent": 0,
+  "last_updated": "2026-01-01T00:00:00Z",
+  "due_date": "2026-12-31",
+  "is_overdue": false,
+
+  "current_focus": "What is being worked on right now.",
+
+  "completed_work": [
+    "2026-01-01: First completed item",
+    "2026-01-02: Second completed item"
+  ],
+
+  "next_steps": [
+    "Next step 1",
+    "Next step 2",
+    "Next step 3"
+  ],
+
+  "blockers": [
+    {
+      "type": "Blocker",
+      "description": "Description of the block",
+      "action_needed": "Who needs to do what",
+      "since": "2026-01-01"
+    }
+  ],
+
+  "risks": [],
+
+  "important_links": [
+    { "label": "GitHub Repo", "url": "https://github.com/..." },
+    { "label": "Claude Project", "url": "https://claude.ai/project/..." },
+    { "label": "Design Doc", "url": "https://docs.google.com/..." }
+  ],
+
+  "recent_updates": [
+    {
+      "timestamp": "2026-01-01T00:00:00Z",
+      "summary": "What happened this session."
+    }
+  ],
+
+  "summary_for_manager": "One plain-language paragraph for a non-technical manager describing the project state, progress, and what matters most right now."
+}

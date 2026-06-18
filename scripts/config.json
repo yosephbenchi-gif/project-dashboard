@@ -1,0 +1,8 @@
+{
+  "owner": "Your Name",
+  "project_dirs": [
+    "../projects/analytics-pipeline",
+    "../projects/user-onboarding",
+    "../projects/customer-portal"
+  ]
+}

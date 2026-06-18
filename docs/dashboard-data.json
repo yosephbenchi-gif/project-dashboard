@@ -1,0 +1,170 @@
+{
+  "generated_at": "2026-06-18T09:42:00Z",
+  "owner": "Alex Rivera",
+  "summary": {
+    "total": 3,
+    "by_status": {
+      "Blocked": 1,
+      "In Progress": 1,
+      "Completed": 1
+    },
+    "overdue": 1,
+    "blocked": 1,
+    "in_progress": 1,
+    "completed": 1,
+    "all_blockers": [
+      {
+        "project": "Analytics Pipeline v2",
+        "type": "Blocker",
+        "description": "Waiting on data engineering team for production S3 access",
+        "action_needed": "Manager to escalate to data engineering lead",
+        "since": "2026-06-15"
+      }
+    ],
+    "upcoming_deadlines": [
+      { "project": "Analytics Pipeline v2", "due_date": "2026-06-20", "days_left": 2, "status": "Blocked" },
+      { "project": "User Onboarding Automation", "due_date": "2026-06-30", "days_left": 12, "status": "In Progress" }
+    ]
+  },
+  "projects": [
+    {
+      "project_name": "Analytics Pipeline v2",
+      "project_id": "proj-001",
+      "owner": "Alex Rivera",
+      "status": "Blocked",
+      "priority": "High",
+      "progress_percent": 45,
+      "last_updated": "2026-06-17T21:30:00Z",
+      "due_date": "2026-06-20",
+      "is_overdue": false,
+      "current_focus": "Building the Spark transformation layer for event aggregation",
+      "completed_work": [
+        "2026-06-10: Finalized data schema and ERD",
+        "2026-06-12: Kafka topic configuration complete",
+        "2026-06-15: Local development environment working end-to-end",
+        "2026-06-17: Spark transformation skeleton implemented"
+      ],
+      "next_steps": [
+        "Deploy staging Spark cluster once S3 access is granted",
+        "Run full data validation suite against sample events",
+        "Load test with 30-day historical data"
+      ],
+      "blockers": [
+        {
+          "type": "Blocker",
+          "description": "Waiting on data engineering team for production S3 access",
+          "action_needed": "Manager to escalate to data engineering lead",
+          "since": "2026-06-15"
+        }
+      ],
+      "risks": [
+        {
+          "type": "Risk",
+          "description": "June 20 deadline may slip if S3 access is not granted by June 18",
+          "action_needed": "Manager aware — escalation in progress",
+          "since": "2026-06-17"
+        }
+      ],
+      "important_links": [
+        { "label": "GitHub Repo", "url": "https://github.com/org/analytics-pipeline" },
+        { "label": "PRD Doc", "url": "https://docs.google.com/document/d/example" },
+        { "label": "Data Schema", "url": "https://docs.google.com/spreadsheets/d/example" }
+      ],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-15T18:00:00Z",
+          "summary": "Local environment complete. Discovered S3 access is required for staging — filed ticket with data engineering."
+        },
+        {
+          "timestamp": "2026-06-17T21:30:00Z",
+          "summary": "Completed Spark skeleton and unit tests. Still blocked on S3 permissions. Deadline at risk."
+        }
+      ],
+      "summary_for_manager": "The Analytics Pipeline is 45% complete and currently blocked by a permissions issue — the data engineering team needs to grant S3 access before we can move to staging. I've filed the request but it has not been actioned since June 15. The June 20 deadline is at risk. I need your help to escalate to the data engineering lead."
+    },
+    {
+      "project_name": "User Onboarding Automation",
+      "project_id": "proj-002",
+      "owner": "Alex Rivera",
+      "status": "In Progress",
+      "priority": "Medium",
+      "progress_percent": 60,
+      "last_updated": "2026-06-18T08:15:00Z",
+      "due_date": "2026-06-30",
+      "is_overdue": false,
+      "current_focus": "Email sequence logic and Segment event tracking integration",
+      "completed_work": [
+        "2026-06-05: Welcome flow and account setup steps",
+        "2026-06-09: In-app tooltip system",
+        "2026-06-13: A/B test framework for email subject lines",
+        "2026-06-17: Email sequence v2 drafted"
+      ],
+      "next_steps": [
+        "Complete Segment event tracking integration",
+        "QA the drip email campaign end-to-end",
+        "Integrate with CRM for lead scoring",
+        "Write test cases and hand off to QA"
+      ],
+      "blockers": [],
+      "risks": [],
+      "important_links": [
+        { "label": "GitHub Repo", "url": "https://github.com/org/onboarding" },
+        { "label": "Claude Project", "url": "https://claude.ai/project/example" },
+        { "label": "Tracking Sheet", "url": "https://docs.google.com/spreadsheets/d/example" }
+      ],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-17T19:00:00Z",
+          "summary": "Email sequence v2 drafted with 5-step drip. Segment integration 80% complete. On track for June 30 deadline."
+        },
+        {
+          "timestamp": "2026-06-18T08:15:00Z",
+          "summary": "Segment integration finished. Starting CRM integration today."
+        }
+      ],
+      "summary_for_manager": "The onboarding automation is 60% complete and on track for the June 30 deadline. The email welcome sequence is drafted and Segment analytics tracking is integrated. Next up is CRM integration and QA. No blockers at this time."
+    },
+    {
+      "project_name": "Customer Portal Redesign",
+      "project_id": "proj-003",
+      "owner": "Alex Rivera",
+      "status": "Completed",
+      "priority": "High",
+      "progress_percent": 100,
+      "last_updated": "2026-06-18T07:00:00Z",
+      "due_date": "2026-06-18",
+      "is_overdue": false,
+      "current_focus": "Deployed to staging — awaiting PM sign-off for production",
+      "completed_work": [
+        "2026-06-01: Design system and component library",
+        "2026-06-07: All 14 UI components built",
+        "2026-06-11: API integration complete",
+        "2026-06-14: Accessibility audit — 0 critical issues",
+        "2026-06-16: Mobile QA across iOS and Android",
+        "2026-06-18: Deployed to staging"
+      ],
+      "next_steps": [
+        "Production deploy pending PM approval (expected today)",
+        "Monitor error rates and performance for 48h post-launch"
+      ],
+      "blockers": [],
+      "risks": [],
+      "important_links": [
+        { "label": "GitHub Repo", "url": "https://github.com/org/customer-portal" },
+        { "label": "Staging Preview", "url": "https://staging.example.com/portal" },
+        { "label": "Design Spec", "url": "https://figma.com/example" }
+      ],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-16T20:00:00Z",
+          "summary": "Mobile QA complete. No critical bugs found. Ready for staging deploy."
+        },
+        {
+          "timestamp": "2026-06-18T07:00:00Z",
+          "summary": "Deployed to staging. All work complete. Awaiting PM sign-off for production push."
+        }
+      ],
+      "summary_for_manager": "The Customer Portal Redesign is complete and deployed to staging. All development, accessibility, and QA work is done. We're waiting on PM sign-off for the production push, which is expected today. The project came in on deadline."
+    }
+  ]
+}
