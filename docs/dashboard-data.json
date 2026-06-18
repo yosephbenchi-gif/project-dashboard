@@ -1,170 +1,238 @@
 {
-  "generated_at": "2026-06-18T09:42:00Z",
-  "owner": "Alex Rivera",
+  "generated_at": "2026-06-18T11:10:00Z",
+  "owner": "Yoseph Benchimol",
   "summary": {
-    "total": 3,
+    "total": 7,
     "by_status": {
-      "Blocked": 1,
-      "In Progress": 1,
-      "Completed": 1
+      "Completed": 2,
+      "In Progress": 3,
+      "Not Started": 2
     },
-    "overdue": 1,
-    "blocked": 1,
-    "in_progress": 1,
-    "completed": 1,
-    "all_blockers": [
-      {
-        "project": "Analytics Pipeline v2",
-        "type": "Blocker",
-        "description": "Waiting on data engineering team for production S3 access",
-        "action_needed": "Manager to escalate to data engineering lead",
-        "since": "2026-06-15"
-      }
-    ],
-    "upcoming_deadlines": [
-      { "project": "Analytics Pipeline v2", "due_date": "2026-06-20", "days_left": 2, "status": "Blocked" },
-      { "project": "User Onboarding Automation", "due_date": "2026-06-30", "days_left": 12, "status": "In Progress" }
-    ]
+    "overdue": 0,
+    "blocked": 0,
+    "in_progress": 3,
+    "completed": 2,
+    "all_blockers": [],
+    "upcoming_deadlines": []
   },
   "projects": [
     {
-      "project_name": "Analytics Pipeline v2",
+      "project_name": "Billing Optimization — Phase 1",
       "project_id": "proj-001",
-      "owner": "Alex Rivera",
-      "status": "Blocked",
-      "priority": "High",
-      "progress_percent": 45,
-      "last_updated": "2026-06-17T21:30:00Z",
-      "due_date": "2026-06-20",
-      "is_overdue": false,
-      "current_focus": "Building the Spark transformation layer for event aggregation",
-      "completed_work": [
-        "2026-06-10: Finalized data schema and ERD",
-        "2026-06-12: Kafka topic configuration complete",
-        "2026-06-15: Local development environment working end-to-end",
-        "2026-06-17: Spark transformation skeleton implemented"
-      ],
-      "next_steps": [
-        "Deploy staging Spark cluster once S3 access is granted",
-        "Run full data validation suite against sample events",
-        "Load test with 30-day historical data"
-      ],
-      "blockers": [
-        {
-          "type": "Blocker",
-          "description": "Waiting on data engineering team for production S3 access",
-          "action_needed": "Manager to escalate to data engineering lead",
-          "since": "2026-06-15"
-        }
-      ],
-      "risks": [
-        {
-          "type": "Risk",
-          "description": "June 20 deadline may slip if S3 access is not granted by June 18",
-          "action_needed": "Manager aware — escalation in progress",
-          "since": "2026-06-17"
-        }
-      ],
-      "important_links": [
-        { "label": "GitHub Repo", "url": "https://github.com/org/analytics-pipeline" },
-        { "label": "PRD Doc", "url": "https://docs.google.com/document/d/example" },
-        { "label": "Data Schema", "url": "https://docs.google.com/spreadsheets/d/example" }
-      ],
-      "recent_updates": [
-        {
-          "timestamp": "2026-06-15T18:00:00Z",
-          "summary": "Local environment complete. Discovered S3 access is required for staging — filed ticket with data engineering."
-        },
-        {
-          "timestamp": "2026-06-17T21:30:00Z",
-          "summary": "Completed Spark skeleton and unit tests. Still blocked on S3 permissions. Deadline at risk."
-        }
-      ],
-      "summary_for_manager": "The Analytics Pipeline is 45% complete and currently blocked by a permissions issue — the data engineering team needs to grant S3 access before we can move to staging. I've filed the request but it has not been actioned since June 15. The June 20 deadline is at risk. I need your help to escalate to the data engineering lead."
-    },
-    {
-      "project_name": "User Onboarding Automation",
-      "project_id": "proj-002",
-      "owner": "Alex Rivera",
-      "status": "In Progress",
-      "priority": "Medium",
-      "progress_percent": 60,
-      "last_updated": "2026-06-18T08:15:00Z",
-      "due_date": "2026-06-30",
-      "is_overdue": false,
-      "current_focus": "Email sequence logic and Segment event tracking integration",
-      "completed_work": [
-        "2026-06-05: Welcome flow and account setup steps",
-        "2026-06-09: In-app tooltip system",
-        "2026-06-13: A/B test framework for email subject lines",
-        "2026-06-17: Email sequence v2 drafted"
-      ],
-      "next_steps": [
-        "Complete Segment event tracking integration",
-        "QA the drip email campaign end-to-end",
-        "Integrate with CRM for lead scoring",
-        "Write test cases and hand off to QA"
-      ],
-      "blockers": [],
-      "risks": [],
-      "important_links": [
-        { "label": "GitHub Repo", "url": "https://github.com/org/onboarding" },
-        { "label": "Claude Project", "url": "https://claude.ai/project/example" },
-        { "label": "Tracking Sheet", "url": "https://docs.google.com/spreadsheets/d/example" }
-      ],
-      "recent_updates": [
-        {
-          "timestamp": "2026-06-17T19:00:00Z",
-          "summary": "Email sequence v2 drafted with 5-step drip. Segment integration 80% complete. On track for June 30 deadline."
-        },
-        {
-          "timestamp": "2026-06-18T08:15:00Z",
-          "summary": "Segment integration finished. Starting CRM integration today."
-        }
-      ],
-      "summary_for_manager": "The onboarding automation is 60% complete and on track for the June 30 deadline. The email welcome sequence is drafted and Segment analytics tracking is integrated. Next up is CRM integration and QA. No blockers at this time."
-    },
-    {
-      "project_name": "Customer Portal Redesign",
-      "project_id": "proj-003",
-      "owner": "Alex Rivera",
+      "owner": "Yoseph Benchimol",
       "status": "Completed",
       "priority": "High",
       "progress_percent": 100,
-      "last_updated": "2026-06-18T07:00:00Z",
-      "due_date": "2026-06-18",
+      "last_updated": "2026-06-18T11:00:00Z",
+      "due_date": null,
       "is_overdue": false,
-      "current_focus": "Deployed to staging — awaiting PM sign-off for production",
+      "current_focus": "Completed — live in production",
       "completed_work": [
-        "2026-06-01: Design system and component library",
-        "2026-06-07: All 14 UI components built",
-        "2026-06-11: API integration complete",
-        "2026-06-14: Accessibility audit — 0 critical issues",
-        "2026-06-16: Mobile QA across iOS and Android",
-        "2026-06-18: Deployed to staging"
+        "Automated system pulling billing data from all 9 AMs into one Master tab",
+        "Real-time validation and error detection with red flagging",
+        "Auto-generated Summary analytics by region"
       ],
+      "next_steps": [],
+      "blockers": [],
+      "risks": [],
+      "important_links": [],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T11:00:00Z",
+          "summary": "Phase 1 complete. Master file consolidation system is live and being used by all 9 AMs."
+        }
+      ],
+      "summary_for_manager": "Phase 1 of the Billing Optimization project is complete. An automated system now pulls billing data from all 9 Account Managers into one Master tab with real-time validation, error detection, and regional analytics. This is live and in use."
+    },
+    {
+      "project_name": "Billing Optimization — Phase 2",
+      "project_id": "proj-002",
+      "owner": "Yoseph Benchimol",
+      "status": "Not Started",
+      "priority": "High",
+      "progress_percent": 0,
+      "last_updated": "2026-06-18T11:00:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Planned — not yet started",
+      "completed_work": [],
       "next_steps": [
-        "Production deploy pending PM approval (expected today)",
-        "Monitor error rates and performance for 48h post-launch"
+        "Build automated script to detect campaigns with expired end dates",
+        "Set up Jira/Confluence alerts to traders",
+        "Test with sample expired campaigns"
       ],
       "blockers": [],
       "risks": [],
-      "important_links": [
-        { "label": "GitHub Repo", "url": "https://github.com/org/customer-portal" },
-        { "label": "Staging Preview", "url": "https://staging.example.com/portal" },
-        { "label": "Design Spec", "url": "https://figma.com/example" }
-      ],
+      "important_links": [],
       "recent_updates": [
         {
-          "timestamp": "2026-06-16T20:00:00Z",
-          "summary": "Mobile QA complete. No critical bugs found. Ready for staging deploy."
-        },
-        {
-          "timestamp": "2026-06-18T07:00:00Z",
-          "summary": "Deployed to staging. All work complete. Awaiting PM sign-off for production push."
+          "timestamp": "2026-06-18T11:00:00Z",
+          "summary": "Planned. Will build after Phase 1 is fully stable."
         }
       ],
-      "summary_for_manager": "The Customer Portal Redesign is complete and deployed to staging. All development, accessibility, and QA work is done. We're waiting on PM sign-off for the production push, which is expected today. The project came in on deadline."
+      "summary_for_manager": "Phase 2 is planned but not yet started. The goal is to build an automated script that detects campaigns with expired end dates and sends alerts to traders via Jira/Confluence, preventing campaigns from being forgotten at month-end."
+    },
+    {
+      "project_name": "Billing Optimization — Phase 3",
+      "project_id": "proj-003",
+      "owner": "Yoseph Benchimol",
+      "status": "Not Started",
+      "priority": "Medium",
+      "progress_percent": 0,
+      "last_updated": "2026-06-18T11:00:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Planned — not yet started",
+      "completed_work": [],
+      "next_steps": [
+        "Design Salesforce vs IO comparison logic",
+        "Identify key fields to validate (budgets, dates, metrics)",
+        "Build flagging system for discrepancies"
+      ],
+      "blockers": [],
+      "risks": [],
+      "important_links": [],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T11:00:00Z",
+          "summary": "Planned. Will start after Phase 2."
+        }
+      ],
+      "summary_for_manager": "Phase 3 is planned but not yet started. The goal is a script that compares Salesforce data against the IO and flags discrepancies in budgets, dates, and metrics before they reach billing."
+    },
+    {
+      "project_name": "Margin Calculator",
+      "project_id": "proj-004",
+      "owner": "Yoseph Benchimol",
+      "status": "Completed",
+      "priority": "Medium",
+      "progress_percent": 100,
+      "last_updated": "2026-06-18T11:00:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Completed",
+      "completed_work": [
+        "Reviewed full codebase for performance improvements",
+        "Accuracy refinements implemented",
+        "Omnichannel optimization complete"
+      ],
+      "next_steps": [],
+      "blockers": [],
+      "risks": [],
+      "important_links": [],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T11:00:00Z",
+          "summary": "Margin calculator optimization complete. Performance and accuracy improvements delivered."
+        }
+      ],
+      "summary_for_manager": "The Margin Calculator optimization is complete. The existing codebase was reviewed and improved for performance and accuracy across omnichannel calculations."
+    },
+    {
+      "project_name": "Naming Conventions Standardization",
+      "project_id": "proj-005",
+      "owner": "Yoseph Benchimol",
+      "status": "In Progress",
+      "priority": "High",
+      "progress_percent": 40,
+      "last_updated": "2026-06-18T11:00:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Waiting on parameters list from Gabby to finalize conventions",
+      "completed_work": [
+        "Initial standardization framework defined",
+        "Identified inconsistencies across reporting systems"
+      ],
+      "next_steps": [
+        "Receive parameters list from Gabby",
+        "Finalize naming convention document",
+        "Roll out to all AMs"
+      ],
+      "blockers": [
+        {
+          "type": "Waiting",
+          "description": "Waiting on parameters list from Gabby",
+          "action_needed": "Follow up with Gabby on parameters list",
+          "since": "2026-06-18"
+        }
+      ],
+      "risks": [],
+      "important_links": [],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T11:00:00Z",
+          "summary": "Framework defined. Blocked on parameters list from Gabby before next steps can proceed."
+        }
+      ],
+      "summary_for_manager": "The Naming Conventions standardization project is 40% complete. The goal is to eliminate manual data entry errors by standardizing naming across all reporting systems. Currently waiting on a parameters list from Gabby to move forward."
+    },
+    {
+      "project_name": "Planhat RFP Tracking",
+      "project_id": "proj-006",
+      "owner": "Yoseph Benchimol",
+      "status": "In Progress",
+      "priority": "Medium",
+      "progress_percent": 25,
+      "last_updated": "2026-06-18T11:00:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Following up with Amale to adjust Planhat data for RFPs won vs lost",
+      "completed_work": [
+        "Identified scope: January to present RFP data",
+        "Defined H1 won vs lost ratio metric"
+      ],
+      "next_steps": [
+        "Follow up with Amale on Planhat data adjustment",
+        "Calculate H1 won vs lost ratio",
+        "Set up weekly tracking system starting July"
+      ],
+      "blockers": [
+        {
+          "type": "Waiting",
+          "description": "Need Amale to adjust Planhat data before analysis can begin",
+          "action_needed": "Follow up with Amale",
+          "since": "2026-06-18"
+        }
+      ],
+      "risks": [],
+      "important_links": [],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T11:00:00Z",
+          "summary": "Scope defined. Waiting on Amale to adjust Planhat data. Weekly tracking to start in July."
+        }
+      ],
+      "summary_for_manager": "The Planhat RFP Tracking project is 25% complete. The goal is to track RFPs won vs lost from January to present, calculate the H1 ratio, and implement weekly tracking from July onward. Currently waiting on Amale to adjust the Planhat data."
+    },
+    {
+      "project_name": "Share Folder Audit",
+      "project_id": "proj-007",
+      "owner": "Yoseph Benchimol",
+      "status": "In Progress",
+      "priority": "Low",
+      "progress_percent": 5,
+      "last_updated": "2026-06-18T11:00:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Initial audit of AMs share folder structure",
+      "completed_work": [
+        "Audit scope defined"
+      ],
+      "next_steps": [
+        "Audit all AMs share folders (campaigns by month)",
+        "Verify IOs, SS, and documentation are complete",
+        "Flag missing items for compliance"
+      ],
+      "blockers": [],
+      "risks": [],
+      "important_links": [],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T11:00:00Z",
+          "summary": "Just started. Audit scope defined, work in progress."
+        }
+      ],
+      "summary_for_manager": "The Share Folder Audit is just getting started (5% complete). The goal is to audit and organize all AMs' share folders by campaign and month, and verify that all IOs, screenshots, and documentation are complete for audit readiness."
     }
   ]
 }
