@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-06-18T11:30:00Z",
+  "generated_at": "2026-06-18T12:00:00Z",
   "owner": "Yoseph Benchimol",
   "summary": {
-    "total": 7,
+    "total": 8,
     "by_status": {
       "Completed": 2,
-      "In Progress": 2,
+      "In Progress": 3,
       "Not Started": 2,
       "Waiting": 1
     },
     "overdue": 0,
     "blocked": 0,
-    "in_progress": 2,
+    "in_progress": 3,
     "completed": 2,
     "all_blockers": [
       {
@@ -36,7 +36,8 @@
         "since": "2026-06-18"
       }
     ],
-    "upcoming_deadlines": []
+    "upcoming_deadlines": [],
+    "generated_at": "2026-06-18T12:00:00Z"
   },
   "projects": [
     {
@@ -221,7 +222,7 @@
       "status": "In Progress",
       "priority": "Medium",
       "progress_percent": 25,
-      "last_updated": "2026-06-18T11:00:00Z",
+      "last_updated": "2026-06-18T12:00:00Z",
       "due_date": null,
       "is_overdue": false,
       "current_focus": "Following up with Amale to adjust Planhat data for RFPs won vs lost",
@@ -230,9 +231,11 @@
         "Defined H1 won vs lost ratio metric"
       ],
       "next_steps": [
-        "Follow up with Amale on Planhat data adjustment",
-        "Calculate H1 won vs lost ratio",
-        "Set up weekly tracking system starting July"
+        "Add month-by-month filters to the RFP dashboard",
+        "Add % won vs lost metric",
+        "Make RFP Won clickable to show total revenue; same for RFP Lost",
+        "Add breakdown table/chart by sales rep and by region (West, East, LATAM, STA)",
+        "Follow up with Amale to adjust Planhat data"
       ],
       "blockers": [
         {
@@ -253,9 +256,13 @@
         {
           "timestamp": "2026-06-18T11:00:00Z",
           "summary": "Scope defined. Waiting on Amale to adjust Planhat data."
+        },
+        {
+          "timestamp": "2026-06-18T12:00:00Z",
+          "summary": "Next steps updated: adding filters, % won/lost, revenue drill-down, and breakdown by rep and region."
         }
       ],
-      "summary_for_manager": "The Planhat RFP Tracking project is 25% complete. Currently waiting on Amale to adjust the Planhat data before analysis can begin."
+      "summary_for_manager": "The Planhat RFP Tracking project is 25% complete. Next steps include adding month-by-month filters, won/lost percentages, revenue drill-down on each RFP, and a breakdown by sales rep and region (West, East, LATAM, STA). Currently waiting on Amale to adjust Planhat data before work can begin."
     },
     {
       "project_name": "Share Folder Audit",
@@ -284,6 +291,37 @@
         }
       ],
       "summary_for_manager": "The Share Folder Audit has not started yet. The goal is to audit and organize all AMs share folders by campaign and month, verifying that all IOs, screenshots, and documentation are complete for audit readiness."
+    },
+    {
+      "project_name": "Automated Client Report (Excel Dashboard)",
+      "project_id": "proj-008",
+      "owner": "Yoseph Benchimol",
+      "status": "In Progress",
+      "priority": "Medium",
+      "progress_percent": 5,
+      "last_updated": "2026-06-18T12:00:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Defining scope and structure with Jeanette",
+      "completed_work": [
+        "Project initiated with Jeanette"
+      ],
+      "next_steps": [
+        "Define report structure and required fields with Jeanette",
+        "Build automated Excel template that generates client-facing dashboard",
+        "Test with sample campaign data",
+        "Deliver final version for client use"
+      ],
+      "blockers": [],
+      "risks": [],
+      "important_links": [],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T12:00:00Z",
+          "summary": "Project started. Working with Jeanette to define scope and structure of the automated client report."
+        }
+      ],
+      "summary_for_manager": "A new project has been initiated with Jeanette to build an automated Excel report that generates a client-facing dashboard. The goal is to eliminate manual reporting work by auto-generating a polished deliverable from raw campaign data. Currently in the scoping phase."
     }
   ]
 }
