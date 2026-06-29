@@ -1,26 +1,19 @@
 {
-  "generated_at": "2026-06-24T16:40:00Z",
+  "generated_at": "2026-06-29T12:00:00Z",
   "owner": "Yoseph Benchimol",
   "summary": {
     "total": 8,
     "by_status": {
-      "In Progress": 3,
-      "Completed": 2,
+      "In Progress": 1,
+      "Completed": 4,
       "Waiting": 0,
       "Not Started": 3
     },
     "overdue": 0,
     "blocked": 0,
-    "in_progress": 3,
-    "completed": 2,
+    "in_progress": 1,
+    "completed": 4,
     "all_blockers": [
-      {
-        "project": "Naming Conventions Standardization",
-        "type": "Waiting",
-        "description": "Waiting on final feedback from Gabby",
-        "action_needed": "Gabby to review and provide feedback",
-        "since": "2026-06-24"
-      },
       {
         "project": "Planhat RFP Tracking",
         "type": "Waiting",
@@ -69,27 +62,22 @@
       "project_name": "Billing Optimization \u2014 Phase 2",
       "project_id": "proj-002",
       "owner": "Yoseph Benchimol",
-      "status": "In Progress",
+      "status": "Completed",
       "priority": "High",
-      "progress_percent": 60,
-      "last_updated": "2026-06-24T16:40:00Z",
+      "progress_percent": 100,
+      "last_updated": "2026-06-29T12:00:00Z",
       "due_date": null,
       "is_overdue": false,
-      "current_focus": "Michael Weintraub deploying Salesforce email notification trigger for campaign end dates",
+      "current_focus": "Completed \u2014 Salesforce email trigger deployed by Michael Weintraub",
       "completed_work": [
-        "Project scope and requirements defined",
-        "Meeting held with Michael Weintraub and Jeanette Sarmiento on Jun 23",
-        "Jira ticket approach evaluated and rejected due to Salesforce architecture limitations",
-        "Email distribution list approach selected and approved by team",
-        "Michael Weintraub committed to deploying Salesforce trigger for US campaigns by end of week",
-        "Jeanette Sarmiento to provide distribution list of recipients to Michael"
+        "Defined scope and objectives for campaign end-date notifications",
+        "Meeting with Michael Weintraub and Jeanette Sarmiento on Jun 23",
+        "Jira approach evaluated and rejected due to Salesforce architecture limitations",
+        "Email distribution list approach selected and approved",
+        "Michael Weintraub deployed Salesforce trigger for US campaign end-date notifications",
+        "Jeanette Sarmiento provided distribution list and communicated new workflow to team"
       ],
-      "next_steps": [
-        "Michael Weintraub: Deploy Salesforce trigger to send email notifications when a US campaign ends",
-        "Jeanette Sarmiento: Provide distribution list of traders to Michael Weintraub",
-        "Jeanette Sarmiento: Communicate new billing workflow to team before July billing cycle",
-        "One-off manual review of all June campaigns to ensure none were missed before automation goes live"
-      ],
+      "next_steps": [],
       "blockers": [],
       "risks": [],
       "important_links": [],
@@ -101,9 +89,13 @@
         {
           "timestamp": "2026-06-24T16:40:00Z",
           "summary": "Meeting with Michael Weintraub and Jeanette on Jun 23. Jira approach rejected \u2014 email distribution list selected instead. Michael is deploying the Salesforce trigger by end of week. Jeanette providing recipient list."
+        },
+        {
+          "timestamp": "2026-06-29T12:00:00Z",
+          "summary": "Phase 2 complete. Michael Weintraub deployed the Salesforce email trigger. Jeanette provided the distribution list. System is live for future campaigns."
         }
       ],
-      "summary_for_manager": "Phase 2 is 60% complete. After a meeting on June 23 with Michael Weintraub and Jeanette Sarmiento, the team aligned on using an email distribution list (instead of Jira) to notify traders when campaign end dates pass. Michael Weintraub is deploying the Salesforce trigger by end of week. Jeanette will provide the recipient list and communicate the new workflow to the team before the July billing cycle."
+      "summary_for_manager": "Billing Optimization Phase 2 is complete. An automated Salesforce trigger now sends email notifications to the trading team when a US campaign end date passes, preventing campaigns from being forgotten at month-end. Michael Weintraub deployed the trigger and Jeanette Sarmiento distributed the new workflow to the team."
     },
     {
       "project_name": "Billing Optimization \u2014 Phase 3",
@@ -167,35 +159,26 @@
       "summary_for_manager": "The Margin Calculator optimization is complete. The codebase was reviewed and improved for performance and accuracy across omnichannel calculations."
     },
     {
-      "project_name": "Naming Conventions Standardization",
+      "project_name": "Reporting Automation \u2014 Phase 1",
       "project_id": "proj-005",
       "owner": "Yoseph Benchimol",
-      "status": "In Progress",
+      "status": "Completed",
       "priority": "High",
-      "progress_percent": 92,
-      "last_updated": "2026-06-24T16:40:00Z",
+      "progress_percent": 100,
+      "last_updated": "2026-06-29T12:00:00Z",
       "due_date": null,
       "is_overdue": false,
-      "current_focus": "Delivered to Gabby \u2014 awaiting final feedback and any last adjustments",
+      "current_focus": "Completed \u2014 delivered and working",
       "completed_work": [
         "Identified all naming inconsistencies across reporting systems",
         "Standardization framework defined",
         "Final format document completed",
-        "Delivered to Gabby for review"
+        "Delivered to Gabby for review",
+        "Final feedback received and adjustments made",
+        "Phase 1 complete and in use"
       ],
-      "next_steps": [
-        "Receive final feedback from Gabby",
-        "Make any final adjustments if needed",
-        "Roll out standardized naming conventions to all AMs"
-      ],
-      "blockers": [
-        {
-          "type": "Waiting",
-          "description": "Waiting on final feedback from Gabby \u2014 minor adjustments may follow",
-          "action_needed": "Gabby to review and provide feedback",
-          "since": "2026-06-24"
-        }
-      ],
+      "next_steps": [],
+      "blockers": [],
       "risks": [],
       "important_links": [
         {
@@ -211,9 +194,13 @@
         {
           "timestamp": "2026-06-24T16:40:00Z",
           "summary": "Document delivered to Gabby and working. Awaiting final feedback and any last adjustments before full rollout."
+        },
+        {
+          "timestamp": "2026-06-29T12:00:00Z",
+          "summary": "Reporting Automation Phase 1 complete. Delivered, reviewed with Gabby, and working."
         }
       ],
-      "summary_for_manager": "Naming Conventions Standardization is 92% complete. The document has been delivered to Gabby and is working. Waiting on her final feedback \u2014 minor adjustments may follow before full rollout to all AMs."
+      "summary_for_manager": "Reporting Automation Phase 1 is complete. The naming conventions standardization has been finalized, reviewed with Gabby, and is now in use."
     },
     {
       "project_name": "Planhat RFP Tracking",
