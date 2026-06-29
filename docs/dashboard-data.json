@@ -1,15 +1,320 @@
 {
-  "generated_at": "2026-06-28T23:47:20.046145+00:00",
-  "owner": "Your Name",
+  "generated_at": "2026-06-24T16:40:00Z",
+  "owner": "Yoseph Benchimol",
   "summary": {
-    "total": 0,
-    "by_status": {},
+    "total": 8,
+    "by_status": {
+      "In Progress": 3,
+      "Completed": 2,
+      "Waiting": 0,
+      "Not Started": 3
+    },
     "overdue": 0,
     "blocked": 0,
-    "all_blockers": [],
-    "upcoming_deadlines": [],
-    "in_progress": 0,
-    "completed": 0
+    "in_progress": 3,
+    "completed": 2,
+    "all_blockers": [
+      {
+        "project": "Naming Conventions Standardization",
+        "type": "Waiting",
+        "description": "Waiting on final feedback from Gabby",
+        "action_needed": "Gabby to review and provide feedback",
+        "since": "2026-06-24"
+      },
+      {
+        "project": "Planhat RFP Tracking",
+        "type": "Waiting",
+        "description": "Need Amale to adjust Planhat data before analysis can begin",
+        "action_needed": "Follow up with Amale",
+        "since": "2026-06-18"
+      }
+    ],
+    "upcoming_deadlines": []
   },
-  "projects": []
+  "projects": [
+    {
+      "project_name": "Billing Optimization \u2014 Phase 1",
+      "project_id": "proj-001",
+      "owner": "Yoseph Benchimol",
+      "status": "Completed",
+      "priority": "High",
+      "progress_percent": 100,
+      "last_updated": "2026-06-18T11:00:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Completed \u2014 live in production",
+      "completed_work": [
+        "Automated system pulling billing data from all 9 AMs into one Master tab",
+        "Real-time validation and error detection with red flagging",
+        "Auto-generated Summary analytics by region"
+      ],
+      "next_steps": [],
+      "blockers": [],
+      "risks": [],
+      "important_links": [
+        {
+          "label": "Billing Master File",
+          "url": "https://docs.google.com/spreadsheets/d/1msYkgWJFIxo7B_HI2O2kU3GKqTdifhX4yvftjoMI-G0/edit?usp=sharing"
+        }
+      ],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T11:00:00Z",
+          "summary": "Phase 1 complete. Master file consolidation system is live and being used by all 9 AMs."
+        }
+      ],
+      "summary_for_manager": "Phase 1 of the Billing Optimization project is complete. An automated system now pulls billing data from all 9 Account Managers into one Master tab with real-time validation, error detection, and regional analytics. This is live and in use."
+    },
+    {
+      "project_name": "Billing Optimization \u2014 Phase 2",
+      "project_id": "proj-002",
+      "owner": "Yoseph Benchimol",
+      "status": "In Progress",
+      "priority": "High",
+      "progress_percent": 60,
+      "last_updated": "2026-06-24T16:40:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Michael Weintraub deploying Salesforce email notification trigger for campaign end dates",
+      "completed_work": [
+        "Project scope and requirements defined",
+        "Meeting held with Michael Weintraub and Jeanette Sarmiento on Jun 23",
+        "Jira ticket approach evaluated and rejected due to Salesforce architecture limitations",
+        "Email distribution list approach selected and approved by team",
+        "Michael Weintraub committed to deploying Salesforce trigger for US campaigns by end of week",
+        "Jeanette Sarmiento to provide distribution list of recipients to Michael"
+      ],
+      "next_steps": [
+        "Michael Weintraub: Deploy Salesforce trigger to send email notifications when a US campaign ends",
+        "Jeanette Sarmiento: Provide distribution list of traders to Michael Weintraub",
+        "Jeanette Sarmiento: Communicate new billing workflow to team before July billing cycle",
+        "One-off manual review of all June campaigns to ensure none were missed before automation goes live"
+      ],
+      "blockers": [],
+      "risks": [],
+      "important_links": [],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T11:30:00Z",
+          "summary": "Phase 2 started. Blocked on meeting with Michael Weintraub for access, permissions, and approval before proceeding."
+        },
+        {
+          "timestamp": "2026-06-24T16:40:00Z",
+          "summary": "Meeting with Michael Weintraub and Jeanette on Jun 23. Jira approach rejected \u2014 email distribution list selected instead. Michael is deploying the Salesforce trigger by end of week. Jeanette providing recipient list."
+        }
+      ],
+      "summary_for_manager": "Phase 2 is 60% complete. After a meeting on June 23 with Michael Weintraub and Jeanette Sarmiento, the team aligned on using an email distribution list (instead of Jira) to notify traders when campaign end dates pass. Michael Weintraub is deploying the Salesforce trigger by end of week. Jeanette will provide the recipient list and communicate the new workflow to the team before the July billing cycle."
+    },
+    {
+      "project_name": "Billing Optimization \u2014 Phase 3",
+      "project_id": "proj-003",
+      "owner": "Yoseph Benchimol",
+      "status": "Not Started",
+      "priority": "High",
+      "progress_percent": 0,
+      "last_updated": "2026-06-18T11:00:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Planned \u2014 will start after Phase 2",
+      "completed_work": [],
+      "next_steps": [
+        "Design Salesforce vs IO comparison logic",
+        "Identify key fields to validate (budgets, dates, metrics)",
+        "Build flagging system for discrepancies"
+      ],
+      "blockers": [],
+      "risks": [],
+      "important_links": [],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T11:00:00Z",
+          "summary": "Planned. Will start after Phase 2 is complete."
+        }
+      ],
+      "summary_for_manager": "Phase 3 is planned but not yet started. The goal is a script that compares Salesforce data against the IO and flags discrepancies in budgets, dates, and metrics before they reach billing."
+    },
+    {
+      "project_name": "Margin Calculator",
+      "project_id": "proj-004",
+      "owner": "Yoseph Benchimol",
+      "status": "Completed",
+      "priority": "Medium",
+      "progress_percent": 100,
+      "last_updated": "2026-06-18T11:00:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Completed",
+      "completed_work": [
+        "Full codebase review and performance improvements",
+        "Accuracy refinements implemented",
+        "Omnichannel optimization complete"
+      ],
+      "next_steps": [],
+      "blockers": [],
+      "risks": [],
+      "important_links": [
+        {
+          "label": "Margin Calculator (Confluence)",
+          "url": "https://mediaconnect.atlassian.net/wiki/spaces/OP/pages/5342101511/Margin+Calculator"
+        }
+      ],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T11:00:00Z",
+          "summary": "Margin calculator optimization complete."
+        }
+      ],
+      "summary_for_manager": "The Margin Calculator optimization is complete. The codebase was reviewed and improved for performance and accuracy across omnichannel calculations."
+    },
+    {
+      "project_name": "Naming Conventions Standardization",
+      "project_id": "proj-005",
+      "owner": "Yoseph Benchimol",
+      "status": "In Progress",
+      "priority": "High",
+      "progress_percent": 92,
+      "last_updated": "2026-06-24T16:40:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Delivered to Gabby \u2014 awaiting final feedback and any last adjustments",
+      "completed_work": [
+        "Identified all naming inconsistencies across reporting systems",
+        "Standardization framework defined",
+        "Final format document completed",
+        "Delivered to Gabby for review"
+      ],
+      "next_steps": [
+        "Receive final feedback from Gabby",
+        "Make any final adjustments if needed",
+        "Roll out standardized naming conventions to all AMs"
+      ],
+      "blockers": [
+        {
+          "type": "Waiting",
+          "description": "Waiting on final feedback from Gabby \u2014 minor adjustments may follow",
+          "action_needed": "Gabby to review and provide feedback",
+          "since": "2026-06-24"
+        }
+      ],
+      "risks": [],
+      "important_links": [
+        {
+          "label": "Naming Conventions Sheet",
+          "url": "https://docs.google.com/spreadsheets/d/1Z5Im6IOJ8gNuVrhcMazQlH6RPCXdbM4AFotIOONxzbw/edit?usp=sharing"
+        }
+      ],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-23T12:50:00Z",
+          "summary": "Format is complete and ready. Waiting on final review with Gabby to confirm last details before rollout."
+        },
+        {
+          "timestamp": "2026-06-24T16:40:00Z",
+          "summary": "Document delivered to Gabby and working. Awaiting final feedback and any last adjustments before full rollout."
+        }
+      ],
+      "summary_for_manager": "Naming Conventions Standardization is 92% complete. The document has been delivered to Gabby and is working. Waiting on her final feedback \u2014 minor adjustments may follow before full rollout to all AMs."
+    },
+    {
+      "project_name": "Planhat RFP Tracking",
+      "project_id": "proj-006",
+      "owner": "Yoseph Benchimol",
+      "status": "In Progress",
+      "priority": "Medium",
+      "progress_percent": 25,
+      "last_updated": "2026-06-23T12:50:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Following up with Amale to adjust Planhat data for RFPs won vs lost",
+      "completed_work": [
+        "Identified scope: January to present RFP data",
+        "Defined H1 won vs lost ratio metric"
+      ],
+      "next_steps": [
+        "Add month-by-month filters so RFPs can be viewed by any specific month",
+        "Add a % won vs lost metric showing the ratio of won vs lost RFPs for any period",
+        "Make RFP Won and RFP Lost clickable to drill down and see the actual dollar value behind each number",
+        "Add a breakdown chart or table that splits RFPs by sales rep and by region (West, East, LATAM, STA)"
+      ],
+      "blockers": [
+        {
+          "type": "Waiting",
+          "description": "Need Amale to adjust Planhat data before analysis can begin",
+          "action_needed": "Follow up with Amale",
+          "since": "2026-06-18"
+        }
+      ],
+      "risks": [],
+      "important_links": [
+        {
+          "label": "Planhat RFP Dashboard",
+          "url": "https://ws.planhat.com/ask-locala/home/content-explorer?pId=6a29b49d4c4714484949e808"
+        }
+      ],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-23T12:50:00Z",
+          "summary": "Next steps updated: adding filters, % won/lost, revenue drill-down, and breakdown by rep and region."
+        }
+      ],
+      "summary_for_manager": "The Planhat RFP Tracking project is 25% complete. Next steps include adding month-by-month filters, won/lost percentages, revenue drill-down on each RFP, and a breakdown by sales rep and region (West, East, LATAM, STA). Currently waiting on Amale to adjust Planhat data before work can begin."
+    },
+    {
+      "project_name": "Share Folder Audit",
+      "project_id": "proj-007",
+      "owner": "Yoseph Benchimol",
+      "status": "Not Started",
+      "priority": "Low",
+      "progress_percent": 0,
+      "last_updated": "2026-06-18T11:00:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Not started yet",
+      "completed_work": [],
+      "next_steps": [
+        "Audit all AMs share folders (campaigns by month)",
+        "Verify IOs, SS, and documentation are complete",
+        "Flag missing items for compliance"
+      ],
+      "blockers": [],
+      "risks": [],
+      "important_links": [],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-18T11:00:00Z",
+          "summary": "Not started yet."
+        }
+      ],
+      "summary_for_manager": "The Share Folder Audit has not started yet. The goal is to audit and organize all AMs share folders by campaign and month, verifying that all IOs, screenshots, and documentation are complete."
+    },
+    {
+      "project_name": "Automated Client Report (Excel Dashboard)",
+      "project_id": "proj-008",
+      "owner": "Yoseph Benchimol",
+      "status": "Not Started",
+      "priority": "Medium",
+      "progress_percent": 0,
+      "last_updated": "2026-06-23T12:50:00Z",
+      "due_date": null,
+      "is_overdue": false,
+      "current_focus": "Not started yet \u2014 will begin with Jeanette",
+      "completed_work": [],
+      "next_steps": [
+        "Define report structure and required fields with Jeanette",
+        "Build automated Excel template that generates client-facing dashboard",
+        "Test with sample campaign data",
+        "Deliver final version for client use"
+      ],
+      "blockers": [],
+      "risks": [],
+      "important_links": [],
+      "recent_updates": [
+        {
+          "timestamp": "2026-06-23T12:50:00Z",
+          "summary": "Project identified but not yet started. Will be worked on with Jeanette."
+        }
+      ],
+      "summary_for_manager": "An automated Excel client report project will be worked on with Jeanette. The goal is to auto-generate a polished client-facing dashboard from raw campaign data. Not yet started."
+    }
+  ]
 }
